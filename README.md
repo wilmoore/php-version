@@ -137,6 +137,8 @@ In $HOME/.bashrc or $HOME/.bash_profile or equivalent (NOTE: the comment block i
   ########################################################################################
   # php-version (activate default PHP version and autocompletion)
   ########################################################################################
+
+
   export PHP_VERSION_DEFAULT=5.3.9              # this version needs to exist before calling php-version
   export PHP_HOME=$HOME/local/php/versions      # should reflect location of compiled PHP versions
   source $HOME/local/php-version/php-version.sh
