@@ -177,11 +177,6 @@ Switching Versions
 
 **Bash Completion**
 
-### php-version custom function
-if [ -d $HOME/local/php ]; then
-    complete -W "$(echo `find $PHP_HOME -d -maxdepth 1 | sort -u | sed 1,2d | awk -F/ '{print $NF}' | grep -vP '(^[.])'`;)" php-version
-fi
-
 
 Alternatives
 ---------------------------
@@ -212,7 +207,22 @@ Alternatives
 Download and Installation
 ---------------------------
 
-**Initializing Default PHP**
+**Git/Github**
+
+  % cd $HOME/local
+  % git clone https://github.com/wilmoore/php-version.git $HOME/local/php-version
+
+**cURL**
+
+  % curl -Ls https://raw.github.com/...
+
+**wget**
+
+  % wget https://raw.github.com/... -O ...
+
+**homebrew**
+
+  % brew install https://gist.github.com/...
 
 
 Setup and Configuration
@@ -222,12 +232,37 @@ Setup and Configuration
 
 In $HOME/.bashrc or $HOME/.bash_profile or equivalent
 
-  source /path/to/where/you/installed/php-version/php-version.sh
+  ########################################################################################
+  # php-version (activate default PHP version and autocompletion)
+  ########################################################################################
+  source $HOME/local/php-version/php-version.sh
+
   export PHP_VERSION_DEFAULT=5.3.9
-  php-version $PHP_VERSION_DEFAULT
+  export PHP_HOME=$HOME/local/php
+  php-version $PHP_VERSION_DEFAULT >/dev/null
 
 
 Switching between versions
 ---------------------------
 
 ...
+
+
+Troubleshooting
+---------------------------
+
+**Sorry, but PHP version '#.#.#' is not installed under directory '/Users/exampleuser/local/php/versions'.**
+
+There are generally two reasons why this error has occurred.
+
+-   The version was entered incorrectly (i.e. "php-version 5.3.i" instead of "php-version 5.3.9".
+-   The root directory has not been configured or is configured incorrectly. This can happen if you have not
+    installed PHP under the recommended directory ($HOME/local/php/versions/) and have also not configured a
+    "PHP_HOME" environment variable. This can be corrected by either:
+
+    # in-line
+    % PHP_HOME=$HOME/local/php php-version 5.4.0-rc6
+
+
+    # ...
+    % export PHP_HOME $HOME/local/php
