@@ -95,12 +95,6 @@ Usage Examples
     $ man phpize
 
 
-Assumptions
----------------------------
-
-#   PHP versions are installed to: $HOME/local/php/versions/${PHP_VERSION}
-
-
 Pre-Install Recommendations
 ---------------------------
 
@@ -108,100 +102,6 @@ The following directory structure is not required; however, this has worked extr
 
   % mkdir -p $HOME/local/php/download/
   % mkdir -p $HOME/local/php/versions/${PHP_VERSION}/src/{ext,php}
-
-
-Installation
----------------------------
-
-**Manually**
-
-    $ wget -c https://raw.github.com/wilmoore/master/phpver -O $HOME/local/bin/phpver
-    $ chmod a+x !$
-    $ which phpver
-    $ export PHP_HOME=$HOME/local/php # put this into your shell profile
-
-*   You may alternatively install the 'phpver' binary into a directory
-    other than $HOME/local/bin; however, just be sure you update your
-    search path accordingly.
-*   You may alternatively change the default PHP_HOME to a location of
-    your choosing.
-
-
-
-Add to search path
----------------------------
-
-In order to be able to execute the "php" binary without typing in the
-full path, you will have to add the PHP "bin" directory to your shell
-profile (e.g. .profile, .bash_profile, .bashrc, etc.). The PHP version
-specified in the "PHP_VERSION" environment variable will be the default
-php version in the shell.
-
-Below is one example of how this might be achieved:
-
-  export PHP_VERSION=5.3.9
-  export PHP_HOME=$HOME/local/php
-  export PHP_ROOT=$PHP_HOME/$PHP_VERSION
-  export PATH="$PHP_ROOT/bin:$PATH"
-  export MANPATH="$PHP_ROOT/man:$MANPATH"
-  export MANPATH="$PHP_ROOT/share/man:$MANPATH"
-
-
-Switching Versions
----------------------------
-
-**Add to your shell profile**
-
-  ########################################################################################
-  # switch PHP version
-  #
-  # this can be invoked multiple times. non-existing paths will be ignored. Multiple paths
-  # are OK as the last one to be added is the one that will be used.
-  ########################################################################################
-
-  function php-version {
-      local PHP_VERSION=$1
-      local PHP_HOME=$HOME/local/php
-      local PHP_ROOT=$PHP_HOME/$PHP_VERSION
-
-      if [[ -d $PHP_ROOT ]]; then
-        export PATH="$PHP_ROOT/bin:$PATH"
-        export MANPATH="$PHP_ROOT/man:$MANPATH"
-        export MANPATH="$PHP_ROOT/share/man:$MANPATH"
-      fi
-  }
-
-**Call it like this in your terminal**
-
-  $ php-version 5.3.9
-
-**Bash Completion**
-
-
-Alternatives
----------------------------
-
-*   (phpenv)[https://github.com/CHH/phpenv]
-*   (php_version_solution)[https://github.com/convissor/php_version_solution]
-*   (phpfarm)[http://sourceforge.net/p/phpfarm/wiki/Home/]
-*   (GNU Stow)[http://www.gnu.org/s/stow/]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Download and Installation
@@ -214,15 +114,17 @@ Download and Installation
 
 **cURL**
 
-  % curl -Ls https://raw.github.com/...
-
-**wget**
-
-  % wget https://raw.github.com/... -O ...
+  % mkdir -p $HOME/local/php-version
+  % cd !$
+  % curl -# -L https://github.com/wilmoore/php-version/tarball/master | tar -xz
 
 **homebrew**
 
-  % brew install https://gist.github.com/...
+  % brew install https://raw.github.com/gist/1702891/s3dd.rb
+
+  # -- or -- #
+
+  % brew install --HEAD https://raw.github.com/gist/1702891/s3dd.rb
 
 
 Setup and Configuration
@@ -230,22 +132,27 @@ Setup and Configuration
 
 **Activate Default PHP version**
 
-In $HOME/.bashrc or $HOME/.bash_profile or equivalent
+In $HOME/.bashrc or $HOME/.bash_profile or equivalent (NOTE: the comment block is optional)
 
   ########################################################################################
   # php-version (activate default PHP version and autocompletion)
   ########################################################################################
+  export PHP_VERSION_DEFAULT=5.3.9              # this version needs to exist before calling php-version
+  export PHP_HOME=$HOME/local/php/versions      # should reflect location of compiled PHP versions
   source $HOME/local/php-version/php-version.sh
-
-  export PHP_VERSION_DEFAULT=5.3.9
-  export PHP_HOME=$HOME/local/php
   php-version $PHP_VERSION_DEFAULT >/dev/null
 
 
-Switching between versions
+Switching Versions
 ---------------------------
 
-...
+**Call it like this in your terminal**
+
+  $ php-version 5.3.9
+
+**Bash Completion**
+
+  % php-version 5.<PRESS-TAB>
 
 
 Troubleshooting
@@ -266,3 +173,13 @@ There are generally two reasons why this error has occurred.
 
     # ...
     % export PHP_HOME $HOME/local/php
+
+
+Alternatives
+---------------------------
+
+*   (phpenv)[https://github.com/CHH/phpenv]
+*   (php_version_solution)[https://github.com/convissor/php_version_solution]
+*   (phpfarm)[http://sourceforge.net/p/phpfarm/wiki/Home/]
+*   (GNU Stow)[http://www.gnu.org/s/stow/]
+
