@@ -162,24 +162,19 @@ Troubleshooting
 
 There are generally two reasons why this error has occurred.
 
--   The version was entered incorrectly (i.e. "php-version 5.3.i" instead of "php-version 5.3.9".
--   The root directory has not been configured or is configured incorrectly. This can happen if you have not
-    installed PHP under the recommended directory ($HOME/local/php/versions/) and have also not configured a
-    "PHP_HOME" environment variable. This can be corrected by either:
-
-    # in-line
-    % PHP_HOME=$HOME/local/php php-version 5.4.0-rc6
+-   The version was entered incorrectly **(i.e. "php-version 5.3.i" instead of "php-version 5.3.9")**.
 
 
-    # ...
-    % export PHP_HOME $HOME/local/php
+**Unable to initialize bash completion for php-version because $PHP_HOME is not set.**
+
+-   The $PHP_HOME environment variable has not been configured or is configured incorrectly.
 
 
 Alternatives
 ---------------------------
 
-*   (phpenv)[https://github.com/CHH/phpenv]
-*   (php_version_solution)[https://github.com/convissor/php_version_solution]
-*   (phpfarm)[http://sourceforge.net/p/phpfarm/wiki/Home/]
-*   (GNU Stow)[http://www.gnu.org/s/stow/]
+-   (phpenv)[https://github.com/CHH/phpenv]
+-   (php_version_solution)[https://github.com/convissor/php_version_solution]
+-   (phpfarm)[http://sourceforge.net/p/phpfarm/wiki/Home/]
+-   (GNU Stow)[http://www.gnu.org/s/stow/]
 
