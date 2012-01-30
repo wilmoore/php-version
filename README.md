@@ -100,8 +100,8 @@ Pre-Install Recommendations
 
 **The following directory structure is not required; however, this has worked extremely well for me.**
 
-  % mkdir -p $HOME/local/php/download/
-  % mkdir -p $HOME/local/php/versions/${PHP_VERSION}/src/{ext,php}
+    % mkdir -p $HOME/local/php/download/
+    % mkdir -p $HOME/local/php/versions/${PHP_VERSION}/src/{ext,php}
 
 
 Download and Installation
@@ -109,22 +109,22 @@ Download and Installation
 
 **Git/Github**
 
-  % cd $HOME/local
-  % git clone https://github.com/wilmoore/php-version.git $HOME/local/php-version
+    % cd $HOME/local
+    % git clone https://github.com/wilmoore/php-version.git $HOME/local/php-version
 
 **cURL**
 
-  % mkdir -p $HOME/local/php-version
-  % cd !$
-  % curl -# -L https://github.com/wilmoore/php-version/tarball/master | tar -xz
+    % mkdir -p $HOME/local/php-version
+    % cd !$
+    % curl -# -L https://github.com/wilmoore/php-version/tarball/master | tar -xz
 
 **homebrew**
 
-  % brew install https://raw.github.com/gist/1702891/s3dd.rb
+    % brew install https://raw.github.com/gist/1702891/s3dd.rb
 
-  # -- or -- #
+    # -- or -- #
 
-  % brew install --HEAD https://raw.github.com/gist/1702891/s3dd.rb
+    % brew install --HEAD https://raw.github.com/gist/1702891/s3dd.rb
 
 
 Setup and Configuration
@@ -134,13 +134,13 @@ Setup and Configuration
 
 In $HOME/.bashrc or $HOME/.bash_profile or equivalent (NOTE: the comment block is optional)
 
-  ########################################################################################
-  # php-version (activate default PHP version and autocompletion)
-  ########################################################################################
-  export PHP_VERSION_DEFAULT=5.3.9              # this version needs to exist before calling php-version
-  export PHP_HOME=$HOME/local/php/versions      # should reflect location of compiled PHP versions
-  source $HOME/local/php-version/php-version.sh
-  php-version $PHP_VERSION_DEFAULT >/dev/null
+    ########################################################################################
+    # php-version (activate default PHP version and autocompletion)
+    ########################################################################################
+    export PHP_VERSION_DEFAULT=5.3.9              # this version needs to exist before calling php-version
+    export PHP_HOME=$HOME/local/php/versions      # should reflect location of compiled PHP versions
+    source $HOME/local/php-version/php-version.sh
+    php-version $PHP_VERSION_DEFAULT >/dev/null
 
 
 Switching Versions
@@ -148,11 +148,11 @@ Switching Versions
 
 **Call it like this in your terminal**
 
-  $ php-version 5.3.9
+    $ php-version 5.3.9
 
 **Bash Completion**
 
-  % php-version 5.<PRESS-TAB>
+    % php-version 5.<PRESS-TAB>
 
 
 Troubleshooting
