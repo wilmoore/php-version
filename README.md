@@ -173,8 +173,8 @@ There are generally two reasons why this error has occurred.
 Alternatives
 ---------------------------
 
--   (phpenv)[https://github.com/CHH/phpenv]
--   (php_version_solution)[https://github.com/convissor/php_version_solution]
--   (phpfarm)[http://sourceforge.net/p/phpfarm/wiki/Home/]
--   (GNU Stow)[http://www.gnu.org/s/stow/]
+-   [phpenv](https://github.com/CHH/phpenv)
+-   [php_version_solution](https://github.com/convissor/php_version_solution)
+-   [phpfarm](http://sourceforge.net/p/phpfarm/wiki/Home/)
+-   [GNU Stow](http://www.gnu.org/s/stow/)
 
