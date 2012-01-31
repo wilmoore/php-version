@@ -51,41 +51,41 @@ Usage Examples
 
 **Switch to a specific PHP version**
 
-    $ php-version <version>
+    % php-version <version>
 
 **List installed PHP version(s)**
 
-    $ ls $PHP_HOME
+    % ls $PHP_HOME
 
 **List the active PHP version**
 
-    $ echo $PHP_VERSION
+    % echo $PHP_VERSION
 
 **Identify full path to:**
 
-    $ which php
+    % which php
 
-    $ which pear
+    % which pear
 
-    $ which pecl
+    % which pecl
 
-    $ which phar
+    % which phar
 
-    $ which php-cgi
+    % which php-cgi
 
-    $ which php-config
+    % which php-config
 
-    $ which phpize
+    % which phpize
 
 **View manual pages**
 
-    $ man php
+    % man php
 
-    $ man php-fpm
+    % man php-fpm
 
-    $ man php-config
+    % man php-config
 
-    $ man phpize
+    % man phpize
 
 
 Pre-Install Recommendations
