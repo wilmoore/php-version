@@ -136,11 +136,9 @@ Download and Installation
 
 **homebrew**
 
-    % brew install https://raw.github.com/gist/1702891/s3dd.rb
-
+    % brew install https://raw.github.com/gist/1702891/php-version.rb
     # -- or -- #
-
-    % brew install --HEAD https://raw.github.com/gist/1702891/s3dd.rb
+    % brew install --HEAD https://raw.github.com/gist/1702891/php-version.rb
 
 
 Setup and Configuration
