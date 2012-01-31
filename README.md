@@ -12,13 +12,13 @@ be even **simpler**.
 
 
 Who is it for?
----------------------------
+----------------------------
 
 **php-version** is primarily for developers that compile multiple versions of PHP on Linux or Mac.
 
 
 Rationale
----------------------------
+----------------------------
 
 While there are [alternative](https://github.com/CHH/phpenv) [tools](http://sourceforge.net/p/phpfarm/wiki/Home/) that
 attempt to [solve](https://github.com/convissor/php_version_solution) this problem, [none](http://www.gnu.org/s/stow/)
@@ -28,7 +28,7 @@ of the tools I've found were simple enough for me.
 
 
 Features
----------------------------
+----------------------------
 
 -   no magic
 -   promotes multiple, per-user PHP installs (though, it won't stop you from having a system-wide PHP install)
@@ -39,7 +39,7 @@ Features
 
 
 Non-Features
----------------------------
+----------------------------
 
 -   does not compile/install PHP. This is left up to you.
 -   does not attempt to manage Apache, MySQL, etc.
@@ -47,7 +47,7 @@ Non-Features
 
 
 Usage Examples
----------------------------
+----------------------------
 
 **Switch to a specific PHP version**
 
@@ -89,7 +89,7 @@ Usage Examples
 
 
 Pre-Install Recommendations
----------------------------
+----------------------------
 
 The following directory structure is not required; however, it is a sane default and works well. If you install PHP with
 your system's package-manager (or homebrew), you may have to make some changes to the recommended directory structure.
@@ -121,7 +121,7 @@ your system's package-manager (or homebrew), you may have to make some changes t
 
 
 Download and Installation
----------------------------
+----------------------------
 
 **Git/Github**
 
@@ -141,10 +141,8 @@ Download and Installation
     % brew install --HEAD https://raw.github.com/gist/1702891/php-version.rb
 
 
-Setup and Configuration
----------------------------
-
-**Activate Default PHP version**
+Activate Default PHP version
+----------------------------
 
 In $HOME/.bashrc or $HOME/.bash_profile or equivalent (NOTE: the comment block is optional)
 
@@ -158,7 +156,7 @@ In $HOME/.bashrc or $HOME/.bash_profile or equivalent (NOTE: the comment block i
 
 
 Switching Versions
----------------------------
+----------------------------
 
 **Call it like this in your terminal**
 
@@ -170,7 +168,7 @@ Switching Versions
 
 
 Troubleshooting
----------------------------
+----------------------------
 
 **Sorry, but PHP version '#.#.#' is not installed under directory '/Users/exampleuser/local/php/versions'.**
 
@@ -185,7 +183,7 @@ There are generally two reasons why this error has occurred.
 
 
 Alternatives
----------------------------
+----------------------------
 
 -   [phpenv](https://github.com/CHH/phpenv)
 -   [php_version_solution](https://github.com/convissor/php_version_solution)
