@@ -132,7 +132,7 @@ Download and Installation
 
     % mkdir -p $HOME/local/php-version
     % cd !$
-    % curl -# -L https://github.com/wilmoore/php-version/tarball/master | tar -xz
+    % curl -# -L https://github.com/wilmoore/php-version/tarball/master | tar -xz --strip 1
 
 **homebrew**
 
