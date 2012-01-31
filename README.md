@@ -99,6 +99,8 @@ your system's package-manager (or homebrew), you may have to make some changes t
 
 **Example (PHP 5.3.9 installed)**
 
+    [ 11:15:09 wilmoore@WM3MBP.local ~/local/php/versions/5.3.9/ ]
+
     % cd $PHP_ROOT
     % ls
 
