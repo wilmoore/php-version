@@ -170,12 +170,9 @@ Switching Versions
 Troubleshooting
 ----------------------------
 
-**Sorry, but PHP version '#.#.#' is not installed under directory '/Users/exampleuser/local/php/versions'.**
-
-There are generally two reasons why this error has occurred.
+**Sorry, but PHP version '#.#.#' is not installed under directory '$HOME/local/php/versions'.**
 
 -   The version was entered incorrectly **(i.e. "php-version 5.3.i" instead of "php-version 5.3.9")**.
-
 
 **Unable to initialize bash completion for php-version because $PHP_HOME is not set.**
 
