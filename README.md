@@ -99,8 +99,12 @@ your system's package-manager (or homebrew), you may have to make some changes t
 
 **Example (PHP 5.3.9 installed)**
 
-    [ wilmoore@WM3MBP.local ~/ ] cd $PHP_ROOT
-    [ wilmoore@WM3MBP.local ~/local/php/versions/5.3.9/ ] ls
+    % cd $PHP_ROOT
+    % pwd
+
+    ~/local/php/versions/5.3.9/
+
+    % ls
 
     drwxr-xr-x  11 wilmoore  staff   374B Jan 30 04:02 .
     drwxr-xr-x   4 wilmoore  staff   136B Jan 30 03:13 ..
