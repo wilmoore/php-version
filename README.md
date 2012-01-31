@@ -44,7 +44,6 @@ Non-Features
 -   does not compile/install PHP. This is left up to you.
 -   does not attempt to manage Apache, MySQL, etc.
 -   does not rely on symlinks
--   does not support 
 
 
 Usage Examples
