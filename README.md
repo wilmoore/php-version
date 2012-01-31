@@ -126,7 +126,7 @@ Download and Installation
 **Git/Github**
 
     % cd $HOME/local
-    % git clone https://github.com/wilmoore/php-version.git $HOME/local/php-version
+    % git clone https://github.com/wilmoore/php-version.git
 
 **cURL**
 
