@@ -102,8 +102,6 @@ your system's package-manager (or homebrew), you may have to make some changes t
     % cd $PHP_ROOT
     % ls
 
-    WM3MBP:5.3.9 wilmoore$ ls
-    total 0
     drwxr-xr-x  11 wilmoore  staff   374B Jan 30 04:02 .
     drwxr-xr-x   4 wilmoore  staff   136B Jan 30 03:13 ..
     drwxr-xr-x  11 wilmoore  staff   374B Jan 30 04:05 bin
