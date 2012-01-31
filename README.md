@@ -65,15 +65,21 @@ Usage Examples
 
     $ which php
 
+
     $ which pear
+
 
     $ which pecl
 
+
     $ which phar
+
 
     $ which php-cgi
 
+
     $ which php-config
+
 
     $ which phpize
 
@@ -81,9 +87,12 @@ Usage Examples
 
     $ man php
 
+
     $ man php-fpm
 
+
     $ man php-config
+
 
     $ man phpize
 
