@@ -14,14 +14,14 @@ be even **simpler**.
 Who is it for?
 ---------------------------
 
-"php-version" is primarily for developers that compile multiple versions of PHP on Linux or Mac.
+**php-version** is primarily for developers that compile multiple versions of PHP on Linux or Mac.
 
 
 Rationale
 ---------------------------
 
 While there are alternative tools that attempt to solve this problem, none of them were simple enough for my taste.
-"php-version" sticks to the classic UNIX notion that tools should perform a single task and perform it well.
+**php-version** sticks to the classic UNIX notion that tools should perform a single task and perform it well.
 
 
 Features
