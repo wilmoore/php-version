@@ -5,7 +5,7 @@ php-version: stupid simple PHP version management
 **php-version** is a minimal shell helper giving PHP developers the ability to switch between compiled versions. It is
 named "php-version" only because "(phpenv)[https://github.com/CHH/phpenv]" was already taken.
 
-**php-version** is heavily inspired by (rbenv)[https://github.com/sstephenson/rbenv]; however, **php-version** aims to
+**php-version** is heavily inspired by [rbenv](https://github.com/sstephenson/rbenv); however, **php-version** aims to
 be even **simpler**. 
 
 **php-version** is a shell function that is sourced into your profile (e.g. $HOME/.bashrc, $HOME/.bash_profile, etc.).
@@ -15,12 +15,6 @@ Who is it for?
 ---------------------------
 
 "php-version" is primarily for developers that compile multiple versions of PHP on Linux or Mac.
-
-**NOTE TO WINDOWS USERS**
-
-While this is primarily a Linux/Mac tool, it is theoretically possible to port this to Windows since we are simply
-updating the "PATH" environment variable to allow so the newly added path is checked first. I do not intend on
-writing this port anytime soon; however, I will accept a pull request if it looks solid.
 
 
 Rationale
