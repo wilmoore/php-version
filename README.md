@@ -3,7 +3,7 @@ php-version: stupid simple PHP version management
 
 
 **php-version** is a minimal shell helper giving PHP developers the ability to switch between compiled versions. It is
-named "php-version" only because "(phpenv)[https://github.com/CHH/phpenv]" was already taken.
+named "php-version" only because "[phpenv](https://github.com/CHH/phpenv)" was already taken.
 
 **php-version** is heavily inspired by [rbenv](https://github.com/sstephenson/rbenv); however, **php-version** aims to
 be even **simpler**. 
