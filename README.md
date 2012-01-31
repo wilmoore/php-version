@@ -91,8 +91,8 @@ Usage Examples
 Pre-Install Recommendations
 ---------------------------
 
-**The following directory structure is not required; however, this has worked extremely well for me.**
-**If you install PHP with your system's package-manager (or homebrew), you may have to make some changes to the recommended directory structure.**
+The following directory structure is not required; however, it is a sane default and works well. If you install PHP with
+your system's package-manager (or homebrew), you may have to make some changes to the recommended directory structure.
 
     % mkdir -p $HOME/local/php/download/
     % mkdir -p $HOME/local/php/versions/${PHP_VERSION}/src/{ext,php}
