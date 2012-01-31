@@ -97,6 +97,25 @@ your system's package-manager (or homebrew), you may have to make some changes t
     % mkdir -p $HOME/local/php/download/
     % mkdir -p $HOME/local/php/versions/${PHP_VERSION}/src/{ext,php}
 
+**Example (PHP 5.3.9 installed)**
+
+    % cd $PHP_ROOT
+    % ls
+
+    WM3MBP:5.3.9 wilmoore$ ls
+    total 0
+    drwxr-xr-x  11 wilmoore  staff   374B Jan 30 04:02 .
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 03:13 ..
+    drwxr-xr-x  11 wilmoore  staff   374B Jan 30 04:05 bin
+    drwxr-xr-x   5 wilmoore  staff   170B Jan 30 04:03 etc
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:12 etc.d
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 include
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 lib
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 sbin
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 04:02 share
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 03:13 src
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 04:02 var
+
 
 Download and Installation
 ---------------------------
