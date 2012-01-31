@@ -48,11 +48,12 @@ function php-version {
 ################################################################################
 
 # bash shell
-if [[ ! -d $PHP_HOME ]]; then
+if [[ ! -d ${PHP_HOME} ]]; then
     echo "Unable to initialize bash completion for php-version because \$PHP_HOME is not set." >&2
     return 1
 fi
 
 if [[ -n ${BASH_VERSION-""} ]]; then
-    complete -W "$(echo `find $PHP_HOME -d -maxdepth 1 | sort -u | sed 1,2d | awk -F/ '{print $NF}' | grep -vP '(^[.])'`;)" php-version
+    complete -W "$(echo $(find ${PHP_HOME} -d -maxdepth 1 | sed -e "s@${PHP_HOME}[/]*@@" | grep -v '^$'))" php-version
 fi
+
