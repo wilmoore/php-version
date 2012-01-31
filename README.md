@@ -20,9 +20,9 @@ Who is it for?
 Rationale
 ----------------------------
 
-While there are [alternative](https://github.com/CHH/phpenv) [tools](http://sourceforge.net/p/phpfarm/wiki/Home/) that
-attempt to [solve](https://github.com/convissor/php_version_solution) this problem, [none](http://www.gnu.org/s/stow/)
-of the tools I've found were simple enough for me.
+>   While there are [alternative](https://github.com/CHH/phpenv) [tools](http://sourceforge.net/p/phpfarm/wiki/Home/) that
+>   attempt to [solve](https://github.com/convissor/php_version_solution) this problem, [none](http://www.gnu.org/s/stow/)
+>   of the tools I've found were simple enough for me.
 
 **php-version** attempts to stick to the classic UNIX notion that tools should one thing and do it well.
 
@@ -144,7 +144,7 @@ Download and Installation
 Activate Default PHP version
 ----------------------------
 
-In $HOME/.bashrc or $HOME/.bash_profile or equivalent (NOTE: the comment block is optional)
+In `$HOME/.bashrc` or `$HOME/.bash_profile` or equivalent (NOTE: the comment block is optional)
 
     ########################################################################################
     # php-version (activate default PHP version and autocompletion)
@@ -176,7 +176,7 @@ Troubleshooting
 
 **Unable to initialize bash completion for php-version because $PHP_HOME is not set.**
 
--   The $PHP_HOME environment variable has not been configured or is configured incorrectly.
+-   The `$PHP_HOME` environment variable has not been configured or is configured incorrectly.
 
 
 Alternatives
