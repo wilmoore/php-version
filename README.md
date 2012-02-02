@@ -2,13 +2,11 @@ php-version: stupid simple PHP version management
 =================================================
 
 
-**php-version** is a minimal shell helper giving PHP developers the ability to switch between compiled versions. It is
-named "php-version" only because [phpenv](https://github.com/CHH/phpenv) was already taken.
+**php-version** is a minimal shell helper allowing developers to switch between multiple versions of PHP.
 
-**php-version** is heavily inspired by [rbenv](https://github.com/sstephenson/rbenv); however, **php-version** aims to
-be even **simpler**. 
+**php-version** is conceptually similar to [rbenv](https://github.com/sstephenson/rbenv); however, **much** `simpler`. 
 
-**php-version** is a shell function that is sourced into your profile (e.g. $HOME/.bashrc, $HOME/.bash_profile, etc.).
+**php-version** consists of one shell function and completion command sourced into your shell profile.
 
 
 Who is it for?
@@ -20,7 +18,7 @@ Who is it for?
 Rationale
 ----------------------------
 
-**php-version** attempts to stick to the classic UNIX notion that tools should one thing and do it well.
+**php-version** attempts to stick to the classic UNIX notion that tools should do one thing well.
 
 >   While there are [alternative](https://github.com/CHH/phpenv) [tools](http://sourceforge.net/p/phpfarm/wiki/Home/) that
 >   attempt to [solve](https://github.com/convissor/php_version_solution) this problem, [none](http://www.gnu.org/s/stow/)
@@ -32,10 +30,10 @@ Features
 
 -   no magic
 -   promotes multiple, per-user PHP installs (though, it won't stop you from having a system-wide PHP install)
--   focuses on just PHP (e.g. not apache, mysql, etc.)
--   shell completion (php-version 5.<PRESS-TAB>)
+-   shell completion (e.g. php-version 5.<PRESS-TAB>)
+-   defers to native shell commands where anything higher-level would be unnecessary (e.g. `echo $PHP_VERSION`)
 -   unobtrusive install/uninstall
--   no magic
+-   `again`, no magic
 
 
 Non-Features
@@ -144,7 +142,7 @@ Download and Installation
 Activate Default PHP version
 ----------------------------
 
-In `$HOME/.bashrc` or `$HOME/.bash_profile` or equivalent (NOTE: the comment block is optional)
+In `$HOME/.bash_profile` or equivalent (NOTE: the comment block is optional)
 
     ########################################################################################
     # php-version (activate default PHP version and autocompletion)
@@ -153,6 +151,24 @@ In `$HOME/.bashrc` or `$HOME/.bash_profile` or equivalent (NOTE: the comment blo
     export PHP_HOME=$HOME/local/php/versions      # should reflect location of compiled PHP versions
     source $HOME/local/php-version/php-version.sh
     php-version $PHP_VERSION_DEFAULT >/dev/null
+
+
+Deactivate / Uninstall
+----------------------------
+
+**Remove Configuration**
+
+From your `$HOME/.bash_profile` or equivalent; remove the call to `php-version`, `source php-version.sh`,
+and the `following variables` (of course, keep the variables if you re-use them otherwise):
+
+1.  PHP_VERSION_DEFAULT
+2.  PHP_HOME
+
+**Remove Files**
+
+    % rm -rf /path-to/php-version
+    # -- or -- #
+    % brew uninstall php-version
 
 
 Switching Versions
@@ -165,6 +181,26 @@ Switching Versions
 **Bash Completion**
 
     % php-version 5.<PRESS-TAB>
+
+
+FAQ
+----------------------------
+
+**Why is the name `php-version`?**
+
+It was the simplest thing I could think of given [phpenv](https://github.com/CHH/phpenv) was already taken.
+
+**What if my PHP versions are not stored neatly under a single directory like `$HOME/local/php/versions`?**
+
+
+    % PHP_HOME=/usr/local/Cellar/php php-version 5.4.0RC7
+
+>   SWITCHED PHP VERSION TO: 5.4.0RC7
+>   NEW PHP ROOT DIRECTORY : /tmp/php//5.4.0RC7
+
+    % which php
+
+>   /usr/local/Cellar/php/5.4.0RC7/bin/php
 
 
 Troubleshooting
