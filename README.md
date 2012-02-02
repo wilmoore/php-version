@@ -6,7 +6,7 @@ php-version: stupid simple PHP version management
 
 **php-version** is conceptually similar to [rbenv](https://github.com/sstephenson/rbenv); however, **much** `simpler`. 
 
-**php-version** consists of one shell function and completion command sourced into your shell profile.
+**php-version** consists of one shell function and bash completion sourced into your shell profile.
 
 
 Who is it for?
