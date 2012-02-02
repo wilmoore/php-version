@@ -32,6 +32,7 @@ Features
 -   promotes multiple, per-user PHP installs (though, it won't stop you from having a system-wide PHP install)
 -   shell completion (e.g. php-version 5.<PRESS-TAB>)
 -   defers to native shell commands where anything higher-level would be unnecessary (e.g. `echo $PHP_VERSION`)
+-   gives you access to the `correct` manpages by prepending manpage path to your `$MANPATH` environment variable
 -   unobtrusive install/uninstall
 -   `again`, no magic
 
