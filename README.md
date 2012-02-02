@@ -98,24 +98,27 @@ your system's package-manager (or `homebrew`), you may have to make some changes
 **Example (PHP 5.3.9 installed)**
 
     % echo $PHP_VERSION
+
     5.3.9
 
     % cd $PHP_ROOT
     % pwd
+
     ~/local/php/versions/5.3.9/
 
     % ls
-    Jan 30 04:02 .
-    Jan 30 03:13 ..
-    Jan 30 04:05 bin
-    Jan 30 04:03 etc
-    Jan 30 04:12 etc.d
-    Jan 30 04:02 include
-    Jan 30 04:02 lib
-    Jan 30 04:02 sbin
-    Jan 30 04:02 share
-    Jan 30 03:13 src
-    Jan 30 04:02 var
+
+    drwxr-xr-x  11 wilmoore  staff   374B Jan 30 04:02 .
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 03:13 ..
+    drwxr-xr-x  11 wilmoore  staff   374B Jan 30 04:05 bin
+    drwxr-xr-x   5 wilmoore  staff   170B Jan 30 04:03 etc
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:12 etc.d
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 include
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 lib
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 sbin
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 04:02 share
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 03:13 src
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 04:02 var
 
 
 Download and Installation
@@ -199,6 +202,7 @@ It was the simplest thing I could think of given [phpenv](https://github.com/CHH
     NEW PHP ROOT DIRECTORY : /tmp/php//5.4.0RC7
 
     % which php
+
     /usr/local/Cellar/php/5.4.0RC7/bin/php
 
 
