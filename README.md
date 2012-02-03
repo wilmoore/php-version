@@ -14,6 +14,8 @@ Who is it for?
 
 **php-version** is primarily for developers that compile multiple versions of PHP on Linux or Mac.
 
+**php-version** gets out of the way so you can work with 'php' the same as if you only had a single version installed.
+
 
 Rationale
 ----------------------------
@@ -139,8 +141,6 @@ Download and Installation
 **homebrew**
 
     % brew install https://raw.github.com/gist/1702891/php-version.rb
-    # -- or -- #
-    % brew install --HEAD https://raw.github.com/gist/1702891/php-version.rb
 
 
 Activate Default PHP version
@@ -170,12 +170,10 @@ and the `following variables` (of course, keep the variables if you re-use them 
 
 **Remove Files**
 
-    % rm -rf /path-to/php-version
-    # -- or -- #
-    % brew uninstall php-version
+    % rm -rf /path-to/php-version # or (brew uninstall php-version)
 
 
-Switching Versions
+Using (Switching Versions)
 ----------------------------
 
 **Call it like this in your terminal**
