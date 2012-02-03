@@ -14,7 +14,7 @@ Who is it for?
 
 **php-version** is primarily for developers that compile multiple versions of PHP on Linux or Mac.
 
-**php-version** gets out of the way so you can work with 'php' the same as if you only had a single version installed.
+**php-version** gets out of the way so you can work with `php` the same as if you only had a single version installed.
 
 
 Rationale
