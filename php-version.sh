@@ -5,10 +5,11 @@
 ################################################################################
 
 function php-version {
-    local PROGRAM_VERSION=0.0.1
+    local PROGRAM_APPNAME='php-version'
+    local PROGRAM_VERSION=0.4.0
 
     # correct # of arguments?
-    if (($# != 1)); then
+    if [ $# != 1 ]; then
         echo "php-version ${PROGRAM_VERSION}" >&2
         echo ""                               >&2
         echo "Usage  : php-version <version>" >&2
@@ -18,12 +19,18 @@ function php-version {
 
     # local variables
     local _PHP_VERSION=$1
-    local _PHP_HOME=${PHP_HOME-$HOME/local/php/versions}
+    local _PHP_HOME=${PHP_HOME-''}
     local _PHP_ROOT=${_PHP_HOME}/${_PHP_VERSION}
+
+    # bail-out if _PHP_HOME does not exist
+    if [[ ! -d ${_PHP_HOME} ]]; then
+        echo "Sorry, but ${PROGRAM_APPNAME} requires that \$PHP_HOME is set and points to an existing directory." >&2
+        return 1
+    fi
 
     # bail-out if _PHP_ROOT does not exist
     if [[ ! -d $_PHP_ROOT ]]; then
-        echo "Sorry, but PHP version '${_PHP_VERSION}' is not installed under directory '${_PHP_HOME}'." >&2
+        echo "Sorry, but ${PROGRAM_VERSION} was unable to find directory '${_PHP_VERSION}' under '${_PHP_HOME}'." >&2
         return 1
     fi
 
@@ -49,11 +56,10 @@ function php-version {
 
 # bash shell
 if [[ ! -d ${PHP_HOME} ]]; then
-    echo "Unable to initialize bash completion for php-version because \$PHP_HOME is not set." >&2
+    echo "Sorry, but php-version requires that \$PHP_HOME is set in order to initialize bash completion." >&2
     return 1
 fi
 
 if [[ -n ${BASH_VERSION-""} ]]; then
     complete -W "$(echo $(find ${PHP_HOME} -d -maxdepth 1 | sed -e "s@${PHP_HOME}[/]*@@" | grep -v '^$'))" php-version
 fi
-
