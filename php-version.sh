@@ -6,7 +6,7 @@
 
 function php-version {
     local PROGRAM_APPNAME='php-version'
-    local PROGRAM_VERSION=0.4.0
+    local PROGRAM_VERSION=0.6.0
 
     # correct # of arguments?
     if [ $# != 1 ]; then
@@ -41,9 +41,16 @@ function php-version {
     # update binary search path
     export PATH="$PHP_ROOT/bin:$PATH"
 
-    # update manpage search path
-    export MANPATH="$PHP_ROOT/man:$MANPATH"
-    export MANPATH="$PHP_ROOT/share/man:$MANPATH"
+    # find php manpath
+    local _MANPATH=$(php-config --man-dir)
+    if [ -z $_MANPATH ]; then
+      _MANPATH=${PHP_ROOT}/share/man
+    fi
+
+    # prepend $_MANPATH to $MANPATH if the directory exists
+    if [ -d $_MANPATH ]; then
+      export MANPATH="${_MANPATH}:$MANPATH"
+    fi
 
     echo "SWITCHED PHP VERSION TO: ${PHP_VERSION}"
     echo "NEW PHP ROOT DIRECTORY : ${PHP_ROOT}"
