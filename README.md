@@ -24,9 +24,10 @@ Rationale
 
 **php-version** attempts to stick to the classic UNIX notion that tools should do one thing well.
 
->   While there are [smart](https://github.com/CHH/phpenv) [alternative](http://sourceforge.net/p/phpfarm/wiki/Home/)
->   tools that attempt to [solve](https://github.com/convissor/php_version_solution) this problem, [none](http://www.gnu.org/s/stow/)
->   of the tools I've found were simple enough for me.
+>   While there are [smart](https://github.com/c9s/phpbrew) [alternative](https://github.com/CHH/phpenv)
+>   [tools](http://sourceforge.net/p/phpfarm/wiki/Home/) that attempt to [solve](https://github.com/convissor/php_version_solution)
+>   this problem, [none](http://www.gnu.org/s/stow/) of the tools I've found were simple enough for me.
+
 
 **php-version** is excellent for automated testing of applications against multiple PHP versions on a single machine.
 
@@ -223,6 +224,7 @@ Troubleshooting
 Alternatives
 ----------------------------
 
+-   [phpbrew](https://github.com/c9s/phpbrew)
 -   [phpenv](https://github.com/CHH/phpenv)
 -   [php_version_solution](https://github.com/convissor/php_version_solution)
 -   [phpfarm](http://sourceforge.net/p/phpfarm/wiki/Home/)
