@@ -2,11 +2,13 @@ php-version: stupid simple PHP version management
 =================================================
 
 
-**php-version** is a minimal shell helper allowing developers to switch between multiple versions of PHP.
+**php-version** exposes a single command `php-version` allowing developers to switch between multiple versions of PHP.
 
-**php-version** is conceptually similar to [rbenv](https://github.com/sstephenson/rbenv); however, **much** `simpler`. 
+**php-version** is conceptually similar to [rbenv](https://github.com/sstephenson/rbenv); however, **much** `simpler`.
 
-**php-version** consists of one shell function and bash completion sourced into your shell profile.
+**php-version** consists of a single function and shell completion.
+
+**php-version** lives in a single file which can be sourced into your shell profile.
 
 
 Who is it for?
@@ -26,25 +28,26 @@ Rationale
 >   attempt to [solve](https://github.com/convissor/php_version_solution) this problem, [none](http://www.gnu.org/s/stow/)
 >   of the tools I've found were simple enough for me.
 
+**php-version** is excellent for automated testing of applications against multiple PHP versions on a single machine.
+
 
 Features
 ----------------------------
 
--   no magic
--   promotes multiple, per-user PHP installs (though, it won't stop you from having a system-wide PHP install)
+-   keeps it simple...no magic
+-   promotes multiple, per-user PHP installs
 -   shell completion (e.g. php-version 5.[PRESS-TAB-NOW])
--   defers to native shell commands where anything higher-level would be unnecessary (e.g. `echo $PHP_VERSION`)
 -   provides access to the manpages of the current version by updating your `$MANPATH` environment variable
--   unobtrusive install/uninstall
--   `again`, no magic
+-   defers to native shell commands where possible (e.g. `man phpize`)
+-   unobtrusive install/uninstall (we won't leave files and symlinks all over the place)
 
 
 Non-Features
 ----------------------------
 
--   does not compile/install PHP. This is left up to you.
+-   does not rely on symlinks or sub-shells
 -   does not attempt to manage Apache, MySQL, etc.
--   does not rely on symlinks
+-   does not compile/install PHP. This is left up to you or you can use something like (php-build)[https://github.com/CHH/php-build]
 
 
 Usage Examples
