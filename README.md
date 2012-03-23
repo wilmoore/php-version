@@ -93,41 +93,6 @@ Usage Examples
     % man phpize
 
 
-Pre-Install Recommendations
-----------------------------
-
-The following directory structure is not required; however, it is a sane default and works well. If you install PHP with
-your system's package-manager (or `homebrew`), you may have to make some changes to the recommended directory structure.
-
-    % mkdir -p $HOME/local/php/download/
-    % mkdir -p $HOME/local/php/versions/${PHP_VERSION}/src/{ext,php}
-
-**Example (PHP 5.3.9 installed)**
-
-    % echo $PHP_VERSION
-
-    5.3.9
-
-    % cd $PHP_ROOT
-    % pwd
-
-    ~/local/php/versions/5.3.9/
-
-    % ls
-
-    drwxr-xr-x  11 wilmoore  staff   374B Jan 30 04:02 .
-    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 03:13 ..
-    drwxr-xr-x  11 wilmoore  staff   374B Jan 30 04:05 bin
-    drwxr-xr-x   5 wilmoore  staff   170B Jan 30 04:03 etc
-    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:12 etc.d
-    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 include
-    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 lib
-    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 sbin
-    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 04:02 share
-    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 03:13 src
-    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 04:02 var
-
-
 Download and Installation
 ----------------------------
 
@@ -145,6 +110,7 @@ Download and Installation
 **homebrew**
 
     % brew install https://raw.github.com/gist/1702891/php-version.rb
+    % source $(brew --prefix php-version)/php-version.sh
 
 
 Activate Default PHP version
@@ -154,16 +120,11 @@ In `$HOME/.bash_profile` or equivalent (NOTE: the comment block is optional)
 
     ########################################################################################
     # php-version (activate default PHP version and autocompletion)
+    # PHP_HOME                      => should reflect location of compiled PHP versions
+    # PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
     ########################################################################################
-    export PHP_VERSION_DEFAULT=5.3.9              # this version needs to exist before calling php-version
-    export PHP_HOME=$HOME/local/php/versions      # should reflect location of compiled PHP versions
-    source $HOME/local/php-version/php-version.sh
-    php-version $PHP_VERSION_DEFAULT >/dev/null
-
-
-NOTE: you can disable shell completion with:
-
-    export PHPVERSION_DISABLE_COMPLETE=1
+    export PHP_HOME=$HOME/local/php/versions
+    source $HOME/local/php-version/php-version.sh && php-version 5.4.0 >/dev/null
 
 
 Deactivate / Uninstall
@@ -192,6 +153,47 @@ Using (Switching Versions)
 **Bash Completion**
 
     % php-version 5.[PRESS-TAB-NOW]
+
+
+Compilation Recommendations
+----------------------------
+
+The following directory structure is not required; however, it is a recommendation that you can modify to your liking.
+
+    % mkdir -p $HOME/local/php/download/
+    % mkdir -p $HOME/local/php/versions/${PHP_VERSION}/src/{ext,php}
+
+
+**php-version** assumes that you intend to compile multiple PHP versions (though you could just have one) which will be
+located under a common directory such as `$HOME/local/php/versions`. In this case, you'd compile PHP as follows:
+
+    ./configure --prefix=$HOME/local/php/versions/${PHP_VERSION} && make && make install
+
+
+**Example (PHP 5.3.9 installed)**
+
+    % echo $PHP_VERSION
+
+    5.3.9
+
+    % cd $PHP_ROOT
+    % pwd
+
+    ~/local/php/versions/5.3.9/
+
+    % ls
+
+    drwxr-xr-x  11 wilmoore  staff   374B Jan 30 04:02 .
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 03:13 ..
+    drwxr-xr-x  11 wilmoore  staff   374B Jan 30 04:05 bin
+    drwxr-xr-x   5 wilmoore  staff   170B Jan 30 04:03 etc
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:12 etc.d
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 include
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 lib
+    drwxr-xr-x   3 wilmoore  staff   102B Jan 30 04:02 sbin
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 04:02 share
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 03:13 src
+    drwxr-xr-x   4 wilmoore  staff   136B Jan 30 04:02 var
 
 
 FAQ
