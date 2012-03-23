@@ -161,6 +161,11 @@ In `$HOME/.bash_profile` or equivalent (NOTE: the comment block is optional)
     php-version $PHP_VERSION_DEFAULT >/dev/null
 
 
+NOTE: you can disable shell completion with:
+
+    export PHPVERSION_DISABLE_COMPLETE=1
+
+
 Deactivate / Uninstall
 ----------------------------
 
