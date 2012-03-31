@@ -10,6 +10,8 @@ php-version: stupid simple PHP version management
 
 **php-version** lives in a single file which can be sourced into your shell profile.
 
+**php-version** considers leaky abstractions to be a huge flailing `fail`.
+
 
 Who is it for?
 ----------------------------
@@ -17,6 +19,13 @@ Who is it for?
 **php-version** is primarily for developers that compile multiple versions of PHP on Linux or Mac.
 
 **php-version** gets out of the way so you can work with `php` the same as if you only had a single version installed.
+
+
+Who is it _NOT_ for?
+----------------------------
+
+If you are a super neck-beard academic, you are likely already doing this as `a matter of fact` as part of your normal workflow;
+in which case, **php-version** is likely not going to be very interesting to you. I respect that :)
 
 
 Rationale
