@@ -111,16 +111,16 @@ Download and Installation
     % cd $HOME/local
     % git clone https://github.com/wilmoore/php-version.git
 
-**cURL**
-
-    % mkdir -p $HOME/local/php-version
-    % cd !$
-    % curl -# -L https://github.com/wilmoore/php-version/tarball/master | tar -xz --strip 1
-
 **homebrew**
 
 
     % brew install https://raw.github.com/gist/1702891/php-version.rb
+
+**Manual/cURL**
+
+    % mkdir -p $HOME/local/php-version
+    % cd !$
+    % curl -# -L https://github.com/wilmoore/php-version/tarball/master | tar -xz --strip 1
 
 
 Activate Default PHP version
