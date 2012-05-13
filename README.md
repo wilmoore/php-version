@@ -118,6 +118,8 @@ Download and Installation
 
 **homebrew**
 
+You can install php versions via [Homebrew-PHP](https://github.com/josegonzalez/homebrew-php)
+
     % brew install https://raw.github.com/gist/1702891/php-version.rb
 
 
@@ -144,7 +146,7 @@ Add the following script block to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell
     # export PHP_VERSIONS                  => reflects location of compiled PHP versions
     # export PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
     ########################################################################################
-    export PHP_VERSIONS=${HOME}/local/php/versions
+    export PHP_VERSIONS=$(dirname $(brew --prefix php))
     [ -f $(brew --prefix php-version)/php-version.sh ] &&
       source $(brew --prefix php-version)/php-version.sh && php-version 5.4.3 >/dev/null
 
