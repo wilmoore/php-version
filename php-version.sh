@@ -6,7 +6,7 @@
 
 function php-version {
   local PROGRAM_APPNAME='php-version'
-  local PROGRAM_VERSION=0.8.7
+  local PROGRAM_VERSION=0.9.0
 
   # correct # of arguments?
   if [ $# != 1 ]; then
