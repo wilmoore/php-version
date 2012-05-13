@@ -57,18 +57,8 @@ Non-Features
 
 -   does not rely on symlinks or sub-shells
 -   does not attempt to manage Apache, MySQL, etc.
--   does not attempt to compile, build, or install PHP.
-
-
-Compiling PHP
-----------------------------
-
-`php-version` does not handle the compile/build step; however, there are several ways to handle this:
-
-
-1. Manually build PHP from source
-1. Use [php-build](https://github.com/CHH/php-build)
-1. Use [Homebrew-PHP](https://github.com/josegonzalez/homebrew-php)
+-   does not attempt to compile, build, or install PHP. Several methods exist for accomplishing this; including,
+    `manual build PHP from source`, [php-build](https://github.com/CHH/php-build), or [Homebrew-PHP](https://github.com/josegonzalez/homebrew-php)
 
 
 Usage Examples
