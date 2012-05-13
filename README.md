@@ -125,15 +125,27 @@ Download and Installation
 Activate Default PHP version
 ----------------------------
 
-In `$HOME/.bash_profile` or equivalent (NOTE: the comment block is optional)
+In `$HOME/.bashrc` or `$HOME/.bash_profile` or your shell's equivalent
+
+**Configuration for standard installs (the comment block is optional)**
 
     ########################################################################################
     # php-version (activate default PHP version and autocompletion)
-    # PHP_HOME                      => should reflect location of compiled PHP versions
-    # PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
+    # export PHP_VERSIONS                  => reflects location of compiled PHP versions
+    # export PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
     ########################################################################################
-    export PHP_HOME=$HOME/local/php/versions
-    source $HOME/local/php-version/php-version.sh && php-version 5.4.0 >/dev/null
+    export PHP_VERSIONS=${HOME}/local/php/versions
+    source $HOME/local/php-version/php-version.sh && php-version 5.4.3 >/dev/null
+
+**Configuration for Homebrew installs (the comment block is optional)**
+
+    ########################################################################################
+    # php-version (activate default PHP version and autocompletion)
+    # export PHP_VERSIONS                  => reflects location of compiled PHP versions
+    # export PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
+    ########################################################################################
+    export PHP_VERSIONS=${HOME}/local/php/versions
+    source $(brew --prefix php-version)/php-version.sh && php-version 5.4.3 >/dev/null
 
 
 Deactivate / Uninstall
@@ -152,12 +164,12 @@ and the `following variables` (of course, keep the variables if you re-use them 
     % rm -rf /path-to/php-version # or (brew uninstall php-version)
 
 
-Using (Switching Versions)
+Switching Versions
 ----------------------------
 
 **Call it like this in your terminal**
 
-    $ php-version 5.3.9
+    $ php-version 5.4.3
 
 **Bash Completion**
 
@@ -179,16 +191,16 @@ located under a common directory such as `$HOME/local/php/versions`. In this cas
     ./configure --prefix=$HOME/local/php/versions/${PHP_VERSION} && make && make install
 
 
-**Example (PHP 5.3.9 installed)**
+**Example (PHP 5.4.3 installed)**
 
     % echo $PHP_VERSION
 
-    5.3.9
+    5.4.3
 
     % cd $PHP_ROOT
     % pwd
 
-    ~/local/php/versions/5.3.9/
+    ~/local/php/versions/5.4.3/
 
     % ls
 
@@ -214,15 +226,14 @@ It was the simplest thing I could think of given [phpenv](https://github.com/CHH
 
 **What if my PHP versions are not stored neatly under a single directory like `$HOME/local/php/versions`?**
 
+    % PHP_VERSIONS=/usr/local/Cellar/php php-version 5.4.3
 
-    % PHP_HOME=/usr/local/Cellar/php php-version 5.4.0RC7
-
-    SWITCHED PHP VERSION TO: 5.4.0RC7
-    NEW PHP ROOT DIRECTORY : /tmp/php//5.4.0RC7
+    SWITCHED PHP VERSION TO: 5.4.3
+    NEW PHP ROOT DIRECTORY : /usr/local/Cellar/php/5.4.3
 
     % which php
 
-    /usr/local/Cellar/php/5.4.0RC7/bin/php
+    /usr/local/Cellar/php/5.4.3/bin/php
 
 
 Troubleshooting
@@ -230,7 +241,7 @@ Troubleshooting
 
 **Sorry, but PHP version '#.#.#' is not installed under directory '$HOME/local/php/versions'.**
 
--   The version was entered incorrectly **(i.e. "php-version 5.3.i" instead of "php-version 5.3.9")**.
+-   The version was entered incorrectly **(i.e. "php-version 5.3.i" instead of "php-version 5.4.3")**.
 
 **Unable to initialize bash completion for php-version because $PHP_HOME is not set.**
 
@@ -247,10 +258,40 @@ Alternatives
 -   [GNU Stow](http://www.gnu.org/s/stow/)
 -   [Encap](http://www.encap.org/)
 
+
 Inspiration
 ----------------------------
 
 -   [n](https://github.com/visionmedia/n)
 -   [rbenv](https://github.com/sstephenson/rbenv)
 -   [ry](https://github.com/jayferd/ry)
+
+
+Roadmap
+----------------------------
+
+-   bin/* wrappers
+    optional shell functions that "wrap" the original bin/* binaries: php,pear,pecl,phar,php-cgi,php-config,phpize
+    if activated, a wrapper simply calls the binary with the parameters passed as-is in the context of a temporarily modified $PATH environment variable:
+
+      PATH=$PHP_HOME/5.3.10/bin:$PATH which php
+      PATH=$PHP_HOME/5.4.3/bin:$PATH which php
+
+    The version to use is determined by a file in the `cwd` called .version
+
+
+TODO
+----------------------------
+
+**php-version shell wrappers**
+
+    check for .version file [semver]
+     And version file has a version
+       And version is in versions directory
+         And php binary exists
+    Execute binary
+
+    If file not found, walk up until found or until root.
+
+    Disablewrappers
 
