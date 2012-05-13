@@ -58,7 +58,7 @@ Non-Features
 -   does not rely on symlinks or sub-shells
 -   does not attempt to manage Apache, MySQL, etc.
 -   does not attempt to compile, build, or install PHP. Current options
-    are **(1)** `manually build PHP from source`, **(2)** [php-build](https://github.com/CHH/php-build), or **(3)** [Homebrew-PHP](https://github.com/josegonzalez/homebrew-php)
+    are **(1)** `manually build PHP from source`, **(2)** [php-build](https://github.com/CHH/php-build), or **(3)** [homebrew-php](https://github.com/josegonzalez/homebrew-php)
 
 
 Usage Examples
