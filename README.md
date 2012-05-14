@@ -239,13 +239,17 @@ It was the simplest thing I could think of given [phpenv](https://github.com/CHH
 Troubleshooting
 ----------------------------
 
-**Sorry, but PHP version '#.#.#' is not installed under directory '$HOME/local/php/versions'.**
+**Sorry, but `php-version` requires that `$PHP_VERSIONS` is set and points to an existing directory.'.**
 
 -   The version was entered incorrectly **(i.e. "php-version 5.3.i" instead of "php-version 5.4.3")**.
 
-**Unable to initialize bash completion for php-version because $PHP_HOME is not set.**
+**Sorry, but `php-version` was unable to find directory '5.4.3' under '/usr/local/Cellar/php'.**
 
--   The `$PHP_HOME` environment variable has not been configured or is configured incorrectly.
+-   You have not installed the requested version of PHP.
+
+**Sorry, but php-version requires that the environment variable `$PHP_VERSIONS` is set in order to initialize bash completion.**
+
+-   The `$PHP_VERSIONS` environment variable has not been configured or is configured incorrectly.
 
 
 Alternatives
