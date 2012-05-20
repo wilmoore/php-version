@@ -128,6 +128,9 @@ Activate Default PHP version
 
 Add the following script block to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
 
+Change `5.x.x` to the version of PHP you'd like your shell to default to or remove `php-version 5.x.x >/dev/null`
+if you do not wish to have a default version of PHP loaded into your `$PATH`. The large comment block is optional:
+
 **for standard installs (the comment block is optional)**
 
     ########################################################################################
@@ -137,18 +140,18 @@ Add the following script block to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell
     ########################################################################################
     export PHP_VERSIONS=${HOME}/local/php/versions
     [ -f $HOME/local/php-version/php-version.sh ] &&
-      source $HOME/local/php-version/php-version.sh && php-version 5.4.3 >/dev/null
+      source $HOME/local/php-version/php-version.sh && php-version 5.x.x >/dev/null
 
 **for Homebrew installs (the comment block is optional)**
 
     ########################################################################################
     # php-version (activate default PHP version and autocompletion)
-    # export PHP_VERSIONS                  => reflects location of compiled PHP versions
-    # export PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
+    # PHP_HOME                      => should reflect location of compiled PHP versions
+    # PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
     ########################################################################################
     export PHP_VERSIONS=$(dirname $(brew --prefix php))
     [ -f $(brew --prefix php-version)/php-version.sh ] &&
-      source $(brew --prefix php-version)/php-version.sh && php-version 5.4.3 >/dev/null
+      source $(brew --prefix php-version)/php-version.sh && php-version 5.x.x >/dev/null
 
 
 Deactivate / Uninstall
