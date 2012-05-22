@@ -70,18 +70,13 @@ if [[ ! -z ${PHPVERSIONDISABLE_COMPLETE} ]]; then
   return 1
 fi
 
-_PHPVERSION_OPTIONS="$(echo $(find ${PHP_VERSIONS} -d -maxdepth 1 | sed -e "s@${PHP_VERSIONS}[/]*@@" | grep -v '^$'))"
-
-# completion for zsh
-if [[ -n ${ZSH_VERSION-""} ]]; then
-  _arguments "1: :(${_PHPVERSION_OPTIONS})"
-  return $?
-fi
-
 # completion for bash
 if [[ -n ${BASH_VERSION-""} ]]; then
-  complete -W "${_PHPVERSION_OPTIONS}" php-version
+  _phpversions() {
+    local CURRENTWD="${COMP_WORDS[COMP_CWORD]}"
+    COMPREPLY=( $(compgen -d ${PHP_VERSIONS%/}/${CURRENTWD} | tr -d ${PHP_VERSIONS%/}/ | grep -vi "${PHP_VERSION}\$") )
+  }
+
+  complete -o nospace -F _phpversions php-version
   return $?
 fi
-
-
