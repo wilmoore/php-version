@@ -113,6 +113,11 @@ Download and Installation
 
 **homebrew**
 
+Using homebrew-php (`brew tap josegonzalez/homebrew-php`)
+
+    % brew install php-version
+
+Via Github Gist
 
     % brew install https://raw.github.com/gist/1702891/php-version.rb
 
@@ -270,6 +275,7 @@ Inspiration
 ----------------------------
 
 -   [n](https://github.com/visionmedia/n)
+-   [nvm](https://github.com/creationix/nvm)
 -   [rbenv](https://github.com/sstephenson/rbenv)
 -   [ry](https://github.com/jayferd/ry)
 
