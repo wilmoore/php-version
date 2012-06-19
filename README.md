@@ -144,8 +144,7 @@ if you do not wish to have a default version of PHP loaded into your `$PATH`. Th
     # export PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
     ########################################################################################
     export PHP_VERSIONS=${HOME}/local/php/versions
-    [ -f $HOME/local/php-version/php-version.sh ] &&
-      source $HOME/local/php-version/php-version.sh && php-version 5.x.x >/dev/null
+    source $HOME/local/php-version/php-version.sh && php-version 5.x.x >/dev/null
 
 **for Homebrew installs (the comment block is optional)**
 
@@ -155,8 +154,7 @@ if you do not wish to have a default version of PHP loaded into your `$PATH`. Th
     # export PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
     ########################################################################################
     export PHP_VERSIONS=$(dirname $(brew --prefix php))
-    [ -f $(brew --prefix php-version)/php-version.sh ] &&
-      source $(brew --prefix php-version)/php-version.sh && php-version 5.x.x >/dev/null
+    source $(brew --prefix php-version)/php-version.sh && php-version 5.x.x >/dev/null
 
 
 Deactivate / Uninstall
