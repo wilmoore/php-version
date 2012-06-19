@@ -70,7 +70,7 @@ Usage Examples
 
 **List installed PHP version(s)**
 
-    % ls $PHP_HOME
+    % ls $PHP_VERSIONS
 
 **List the active PHP version**
 
@@ -151,8 +151,8 @@ if you do not wish to have a default version of PHP loaded into your `$PATH`. Th
 
     ########################################################################################
     # php-version (activate default PHP version and autocompletion)
-    # PHP_HOME                      => should reflect location of compiled PHP versions
-    # PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
+    # export PHP_VERSIONS                  => reflects location of compiled PHP versions
+    # export PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
     ########################################################################################
     export PHP_VERSIONS=$(dirname $(brew --prefix php))
     [ -f $(brew --prefix php-version)/php-version.sh ] &&
