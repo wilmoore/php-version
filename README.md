@@ -13,7 +13,7 @@ php-version: stupid simple PHP version management
 This _IS_ for you if
 ----------------------------
 
-- You are not satisifed with installers *AMP in the name.
+- You are not satisifed with installers with *AMP in the name.
 - You [compile multiple versions][php-build] of PHP on Linux or Mac.
 - You download [pre-compiled PHP binaries for Windows][windows-bin] ([coming soon][windows-port]).
 - You are not happy that the default PHP installation sprays a bunch of seemingly random files across your filesystem.
@@ -280,6 +280,31 @@ Inspiration
 -   [rbfu](https://github.com/hmans/rbfu)
 -   [ry](https://github.com/jayferd/ry)
 
+
+LICENSE
+------------------------------
+
+    (The MIT License)
+
+    Copyright (c) 2012 Wil Moore III <wil.moore@wilmoore.com>
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is furnished
+    to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
 
 
 
