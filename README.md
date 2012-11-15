@@ -1,31 +1,28 @@
 php-version: stupid simple PHP version management
 =================================================
 
-
 **php-version** exposes a single command `php-version` allowing developers to switch between multiple versions of PHP.
 
 **php-version** is conceptually similar to [rbenv](https://github.com/sstephenson/rbenv); however, **much** `simpler`.
 
-**php-version** consists of a single function and shell completion.
+**php-version** consists of a single function and command completion.
 
 **php-version** lives in a single file which can be sourced into your shell profile.
 
-**php-version** considers leaky abstractions to be a huge flailing `fail`.
 
-
-Who is it for?
+This _IS_ for you if
 ----------------------------
 
-**php-version** is primarily for developers that compile multiple versions of PHP on Linux or Mac.
+- You compile multiple versions (or download pre-comiled binaries) of PHP on Linux or Mac.
+- You are not happy that the default PHP installation sprays a bunch of seemingly random files across your filesystem.
 
-**php-version** gets out of the way so you can work with `php` the same as if you only had a single version installed.
 
-
-Who is it _NOT_ for?
+This is _NOT_ for you if
 ----------------------------
 
-If you are a super neck-beard academic, you are likely already doing this as `a matter of fact` as part of your normal workflow;
-in which case, **php-version** is likely not going to be very interesting to you. I respect that :)
+- You dig installers named *AMP.
+- You think the command-line is stupid and hard.
+- You are 100% sure you will only ever need a single global version of PHP installed at once.
 
 
 Rationale
@@ -50,6 +47,8 @@ Features
 -   provides access to the manpages of the current version by updating your `$MANPATH` environment variable
 -   defers to native shell commands where possible (e.g. `man phpize`)
 -   unobtrusive install/uninstall (we won't leave files and symlinks all over the place)
+-   gets out of the way so you can work with `php` the same as if you had a single version installed.
+
 
 
 Non-Features
@@ -263,6 +262,7 @@ Alternatives
 
 -   [phpbrew](https://github.com/c9s/phpbrew)
 -   [phpenv](https://github.com/CHH/phpenv)
+-   [phpenv](https://github.com/humanshell/phpenv)
 -   [php_version_solution](https://github.com/convissor/php_version_solution)
 -   [phpfarm](http://sourceforge.net/p/phpfarm/wiki/Home/)
 -   [GNU Stow](http://www.gnu.org/s/stow/)
@@ -275,5 +275,6 @@ Inspiration
 -   [n](https://github.com/visionmedia/n)
 -   [nvm](https://github.com/creationix/nvm)
 -   [rbenv](https://github.com/sstephenson/rbenv)
+-   [rbfu](https://github.com/hmans/rbfu)
 -   [ry](https://github.com/jayferd/ry)
 
