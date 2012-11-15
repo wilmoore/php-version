@@ -13,14 +13,16 @@ php-version: stupid simple PHP version management
 This _IS_ for you if
 ----------------------------
 
-- You compile multiple versions (or download pre-comiled binaries) of PHP on Linux or Mac.
+- You are not satisifed with installers *AMP in the name.
+- You [compile multiple versions][php-build] of PHP on Linux or Mac.
+- You download [pre-compiled PHP binaries for Windows][windows-bin] ([coming soon][windows-port]).
 - You are not happy that the default PHP installation sprays a bunch of seemingly random files across your filesystem.
 
 
 This is _NOT_ for you if
 ----------------------------
 
-- You dig installers named *AMP.
+- You dig installers with *AMP in the name.
 - You think the command-line is stupid and hard.
 - You are 100% sure you will only ever need a single global version of PHP installed at once.
 
@@ -57,7 +59,7 @@ Non-Features
 -   does not rely on symlinks or sub-shells
 -   does not attempt to manage Apache, MySQL, etc.
 -   does not attempt to compile, build, or install PHP. Current options
-    are **(1)** [php-build](https://github.com/CHH/php-build), **(2)** [homebrew-php](https://github.com/josegonzalez/homebrew-php), or **(3)** `manually build PHP from source`.
+    are **(1)** [php-build][php-build], **(2)** [homebrew-php][homebrew-php], or **(3)** `manually build PHP from source`.
 
 
 Usage Examples
@@ -278,3 +280,12 @@ Inspiration
 -   [rbfu](https://github.com/hmans/rbfu)
 -   [ry](https://github.com/jayferd/ry)
 
+
+
+
+
+
+[php-build]:    https://github.com/CHH/php-build
+[homebrew-php]: https://github.com/josegonzalez/homebrew-php
+[windows-bin]:  http://windows.php.net/download
+[windows-port]: https://github.com/wilmoore/php-version/issues/2
