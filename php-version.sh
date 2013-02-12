@@ -6,7 +6,7 @@
 
 function php-version {
   local PROGRAM_APPNAME='php-version'
-  local PROGRAM_VERSION=0.9.3
+  local PROGRAM_VERSION=0.9.4
 
   # correct # of arguments?
   if [ $# != 1 ]; then
@@ -37,6 +37,7 @@ function php-version {
   # safe to export these now!
   export PHP_VERSION=${_PHP_VERSION}
   export PHP_ROOT=${_PHP_ROOT}
+  export PHPRC=${_PHP_ROOT}/etc/php.ini
 
   # add the "bin" path to the front (prepend) of $PATH
   export PATH="${PHP_ROOT}/bin:$PATH"
@@ -55,7 +56,6 @@ function php-version {
   echo "SWITCHED PHP VERSION TO: ${PHP_VERSION}"
   echo "NEW PHP ROOT DIRECTORY : ${PHP_ROOT}"
 }
-
 
 ################################################################################
 # shell completion for php-version function
