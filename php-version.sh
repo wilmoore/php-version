@@ -30,7 +30,7 @@ function php-version {
 
   # bail-out if _PHP_ROOT does not exist
   if [[ ! -d $_PHP_ROOT ]]; then
-    echo "Sorry, but ${PROGRAM_VERSION} was unable to find directory '${_PHP_VERSION}' under '${_PHP_VERSIONS}'." >&2
+    echo "Sorry, but ${PROGRAM_APPNAME} was unable to find directory '${_PHP_VERSION}' under '${_PHP_VERSIONS}'." >&2
     return 1
   fi
 
