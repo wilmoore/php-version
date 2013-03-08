@@ -20,16 +20,22 @@ function php-version {
   # local variables
   local _PHP_VERSION=$1
   local _PHP_VERSIONS=${PHP_VERSIONS-''}
-  local _PHP_ROOT=${_PHP_VERSIONS}/${_PHP_VERSION}
 
   # bail-out if _PHP_VERSIONS does not exist
-  if [[ ! -d ${_PHP_VERSIONS} ]]; then
-    echo "Sorry, but ${PROGRAM_APPNAME} requires that \$PHP_VERSIONS is set and points to an existing directory." >&2
+  if [[ -z ${_PHP_VERSIONS} ]]; then
+    echo "Sorry, but ${PROGRAM_APPNAME} requires that \$PHP_VERSIONS is set and points to an existing directory or directories." >&2
     return 1
   fi
 
+  for _PHP_REPOSITORY in $_PHP_VERSIONS; do
+    if [[ -d ${_PHP_REPOSITORY}/${_PHP_VERSION} ]]; then
+      local _PHP_ROOT=${_PHP_REPOSITORY}/${_PHP_VERSION}
+      break;
+    fi
+  done
+
   # bail-out if _PHP_ROOT does not exist
-  if [[ ! -d $_PHP_ROOT ]]; then
+  if [[ -z $_PHP_ROOT ]]; then
     echo "Sorry, but ${PROGRAM_APPNAME} was unable to find directory '${_PHP_VERSION}' under '${_PHP_VERSIONS}'." >&2
     return 1
   fi
@@ -61,7 +67,7 @@ function php-version {
 # shell completion for php-version function
 ################################################################################
 
-if [[ ! -d ${PHP_VERSIONS} ]]; then
+if [[ -z ${PHP_VERSIONS} ]]; then
   echo "Sorry, but php-version requires that the environment variable \$PHP_VERSIONS is set in order to initialize bash completion." >&2
   return 1
 fi
@@ -74,7 +80,10 @@ fi
 if [[ -n ${BASH_VERSION-""} ]]; then
   _phpversions() {
     local CURRENTWD="${COMP_WORDS[COMP_CWORD]}"
-    COMPREPLY=( $(compgen -d ${PHP_VERSIONS%/}/${CURRENTWD} | tr -d ${PHP_VERSIONS%/}/ | grep -vi "${PHP_VERSION}\$") )
+    COMPREPLY=()
+    for _PHP_REPOSITORY in $PHP_VERSIONS; do
+      COMPREPLY=("${COMPREPLY[@]}" $(compgen -d ${_PHP_REPOSITORY%/}/${CURRENTWD} | sed "s#${_PHP_REPOSITORY%/}/##g" ))
+    done
   }
 
   complete -o nospace -F _phpversions php-version
