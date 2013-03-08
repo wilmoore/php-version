@@ -14,8 +14,61 @@ function php-version {
     echo ""                                      >&2
     echo "Usage  : ${PROGRAM_APPNAME} <version>" >&2
     echo "Example: ${PROGRAM_APPNAME} 5.4.3"     >&2
+    echo "Example: ${PROGRAM_APPNAME} 5.4"       >&2
     return 1
   fi
+
+  # http://stackoverflow.com/a/4025065
+  function vercomp {
+      if [[ $1 == $2 ]]
+      then
+          return 0
+      fi
+      local IFS=.
+      local i ver1=($1) ver2=($2)
+      # fill empty fields in ver1 with zeros
+      for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+      do
+          ver1[i]=0
+      done
+      for ((i=0; i<${#ver1[@]}; i++))
+      do
+          if [[ -z ${ver2[i]} ]]
+          then
+              # fill empty fields in ver2 with zeros
+              ver2[i]=0
+          fi
+          if ((10#${ver1[i]} > 10#${ver2[i]}))
+          then
+              return 1
+          fi
+          if ((10#${ver1[i]} < 10#${ver2[i]}))
+          then
+              return 2
+          fi
+      done
+      return 0
+  }
+
+  function find_best_suitable_version {
+    local _PHP_FOUND_VERSION=0
+    local _PHP_VERSION_PATTERN="$1.*"
+
+    for _PHP_REPOSITORY in $_PHP_VERSIONS; do
+      _PHP_CANDIDATE_VERSIONS=$(ls -d ${_PHP_REPOSITORY}/${_PHP_VERSION_PATTERN} 2>/dev/null)
+
+      for _PHP_CANDIDATE_VERSION in $_PHP_CANDIDATE_VERSIONS; do
+        _PHP_CANDIDATE_VERSION=${_PHP_CANDIDATE_VERSION#$_PHP_REPOSITORY/}
+
+        vercomp $_PHP_FOUND_VERSION $_PHP_CANDIDATE_VERSION
+        if [[ $? == 2 ]]; then
+          _PHP_FOUND_VERSION=$_PHP_CANDIDATE_VERSION
+        fi
+      done
+    done
+
+    echo $_PHP_FOUND_VERSION
+  }
 
   # local variables
   local _PHP_VERSION=$1
@@ -25,6 +78,11 @@ function php-version {
   if [[ -z ${_PHP_VERSIONS} ]]; then
     echo "Sorry, but ${PROGRAM_APPNAME} requires that \$PHP_VERSIONS is set and points to an existing directory or directories." >&2
     return 1
+  fi
+
+  local _PHP_VERSION_PARTS=($(echo -e "$_PHP_VERSION" | sed "s#\.# #g"))
+  if [[ ${#_PHP_VERSION_PARTS[@]} -lt 3 ]]; then
+    _PHP_VERSION=$(find_best_suitable_version $_PHP_VERSION)
   fi
 
   for _PHP_REPOSITORY in $_PHP_VERSIONS; do
