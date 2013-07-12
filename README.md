@@ -1,5 +1,4 @@
-php-version: stupid simple PHP version management
-=================================================
+# php-version: stupid simple PHP version management
 
 **php-version** exposes a single command `php-version` allowing developers to switch between multiple versions of PHP.
 
@@ -10,8 +9,7 @@ php-version: stupid simple PHP version management
 **php-version** lives in a single file which can be sourced into your shell profile.
 
 
-This _IS_ for you if
-----------------------------
+## This _IS_ for you if
 
 - You are not satisifed with installers with *AMP in the name.
 - You [compile multiple versions][php-build] of PHP on Linux or Mac.
@@ -19,16 +17,14 @@ This _IS_ for you if
 - You are not happy that the default PHP installation sprays a bunch of seemingly random files across your filesystem.
 
 
-This is _NOT_ for you if
-----------------------------
+## This is _NOT_ for you if
 
 - You dig installers with *AMP in the name.
 - You think the command-line is stupid and hard.
 - You are 100% sure you will only ever need a single global version of PHP installed at once.
 
 
-Rationale
-----------------------------
+## Rationale
 
 **php-version** attempts to stick to the classic UNIX notion that tools should do one thing well.
 
@@ -40,8 +36,7 @@ Rationale
 **php-version** is excellent for automated testing of applications against multiple PHP versions on a single machine.
 
 
-Features
-----------------------------
+## Features
 
 -   keeps it simple...no magic
 -   promotes multiple, per-user PHP installs
@@ -52,18 +47,14 @@ Features
 -   gets out of the way so you can work with `php` the same as if you had a single version installed.
 
 
-
-Non-Features
-----------------------------
+## Non-Features
 
 -   does not rely on symlinks or sub-shells
 -   does not attempt to manage Apache, MySQL, etc.
--   does not attempt to compile, build, or install PHP. Current options
-    are **(1)** [php-build][php-build], **(2)** [homebrew-php][homebrew-php], or **(3)** `manually build PHP from source`.
+-   does not attempt to compile, build, or install PHP. Current options are **(1)** [php-build][php-build], **(2)** [homebrew-php][homebrew-php], or **(3)** [manually build PHP from source][manual-build].
 
 
-Usage Examples
-----------------------------
+## Usage Examples
 
 **Switch to a specific PHP version**
 
@@ -106,8 +97,7 @@ Usage Examples
     % man phpize
 
 
-Download and Installation
-----------------------------
+## Download and Installation
 
 **Git/Github**
 
@@ -131,8 +121,7 @@ Via Github Gist
     % curl -# -L https://github.com/wilmoore/php-version/tarball/master | tar -xz --strip 1
 
 
-Activate Default PHP version
-----------------------------
+## Activate Default PHP version
 
 Add the following script block to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
 
@@ -160,8 +149,7 @@ if you do not wish to have a default version of PHP loaded into your `$PATH`. Th
     source $(brew --prefix php-version)/php-version.sh && php-version 5.x.x >/dev/null
 
 
-Deactivate / Uninstall
-----------------------------
+## Deactivate / Uninstall
 
 **Remove Configuration**
 
@@ -173,8 +161,7 @@ remove the above mentioned configuration block.
     % rm -rf /path-to/php-version # or (brew uninstall php-version)
 
 
-Switching Versions
-----------------------------
+## Switching Versions
 
 **Call it like this in your terminal**
 
@@ -185,8 +172,7 @@ Switching Versions
     % php-version 5.[PRESS-TAB-NOW]
 
 
-Compilation Recommendations
-----------------------------
+## Compilation Recommendations
 
 The following directory structure is not required; however, it is a recommendation that you can modify to your liking.
 
@@ -226,8 +212,7 @@ located under a common directory such as `$HOME/local/php/versions`. In this cas
     drwxr-xr-x   4 wilmoore  staff   136B Jan 30 04:02 var
 
 
-FAQ
-----------------------------
+## FAQ
 
 **Why is the name `php-version`?**
 
@@ -245,8 +230,7 @@ It was the simplest thing I could think of given [phpenv](https://github.com/CHH
     /usr/local/Cellar/php/5.4.3/bin/php
 
 
-Troubleshooting
-----------------------------
+## Troubleshooting
 
 **Sorry, but `php-version` requires that `$PHP_VERSIONS` is set and points to an existing directory.'.**
 
@@ -261,8 +245,15 @@ Troubleshooting
 -   The `$PHP_VERSIONS` environment variable has not been configured or is configured incorrectly.
 
 
-Alternatives
-----------------------------
+## Contributors
+
+```
+85  Wil Moore III
+ 1  Martin Lundberg
+ 1  Tugdual Saunier
+```
+
+## Alternatives
 
 -   [phpbrew](https://github.com/c9s/phpbrew)
 -   [phpenv](https://github.com/CHH/phpenv)
@@ -273,8 +264,7 @@ Alternatives
 -   [Encap](http://www.encap.org/)
 
 
-Inspiration
-----------------------------
+## Inspiration
 
 -   [n](https://github.com/visionmedia/n)
 -   [nvm](https://github.com/creationix/nvm)
@@ -283,8 +273,7 @@ Inspiration
 -   [ry](https://github.com/jayferd/ry)
 
 
-LICENSE
-------------------------------
+## LICENSE
 
     (The MIT License)
 
@@ -316,3 +305,4 @@ LICENSE
 [homebrew-php]: https://github.com/josegonzalez/homebrew-php
 [windows-bin]:  http://windows.php.net/download
 [windows-port]: https://github.com/wilmoore/php-version/issues/2
+[manual-build]: https://github.com/wilmoore/php-version#compilation-recommendations
