@@ -39,10 +39,8 @@ function php-version {
   export PHP_ROOT=${_PHP_ROOT}
   export PHPRC=${_PHP_ROOT}/etc/php.ini
 
-  # add the "bin" path to the front (prepend) of $PATH
-  export PATH="$PHP_ROOT/bin:$PATH"
-
-  # depending on configure options, `sbin` may not be created (add if available)
+  # conditionally prepend `bin` and `sbin` directories to `$PATH`
+  [[ -d $PHP_ROOT/bin  ]] && export PATH="$PHP_ROOT/bin:$PATH"
   [[ -d $PHP_ROOT/sbin ]] && export PATH="$PHP_ROOT/sbin:$PATH"
 
   # find php manpath
