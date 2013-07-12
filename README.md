@@ -81,6 +81,8 @@ Usage Examples
 
     % which php
 
+    % which php-fpm
+
     % which pear
 
     % which pecl
