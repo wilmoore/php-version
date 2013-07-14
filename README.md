@@ -265,7 +265,7 @@ located under a common directory such as `$HOME/local/php/versions`. In this cas
 
     (The MIT License)
 
-    Copyright (c) 2012 Wil Moore III <wil.moore@wilmoore.com>
+    Copyright (c) 2013 Wil Moore III <wil.moore@wilmoore.com>
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
