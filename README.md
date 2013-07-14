@@ -56,19 +56,21 @@
 
 ## Usage Examples
 
-**Switch to a specific PHP version**
+### Switch to a specific PHP version
 
     % php-version <version>
 
-**List installed PHP version(s)**
+### List installed and active (*) PHP version(s)
 
-    % ls $PHP_VERSIONS
+    % php-version
+      5.3.9
+      5.3.10
+      5.4.0RC8
+      5.4.0RC6
+      5.4.0
+    * 5.4.8
 
-**List the active PHP version**
-
-    % echo $PHP_VERSION
-
-**Identify full path to:**
+### Identify full path to PHP binaries
 
     % which php
 
@@ -86,7 +88,7 @@
 
     % which phpize
 
-**View manual pages**
+### View manual pages
 
     % man php
 
