@@ -248,9 +248,9 @@ It was the simplest thing I could think of given [phpenv](https://github.com/CHH
 ## Contributors
 
 ```
-85  Wil Moore III
+86  Wil Moore III
+ 3  Tugdual Saunier
  1  Martin Lundberg
- 1  Tugdual Saunier
 ```
 
 ## Alternatives
