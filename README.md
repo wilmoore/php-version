@@ -123,22 +123,21 @@ Via Github Gist
 
 ## Activate Default PHP version
 
-Add the following script block to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
+Add the following script block to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file (the comment block is optional):
 
-Change `5.x.x` to the version of PHP you'd like your shell to default to or remove `php-version 5.x.x >/dev/null`
-if you do not wish to have a default version of PHP loaded into your `$PATH`. The large comment block is optional:
-
-**for standard installs (the comment block is optional)**
+### for standard installs
 
     ########################################################################################
     # php-version (activate default PHP version and autocompletion)
     # export PHP_VERSIONS                  => reflects location of compiled PHP versions
     # export PHPVERSION_DISABLE_COMPLETE=1 => to disable shell completion
     ########################################################################################
-    export PHP_VERSIONS=${HOME}/local/php/versions
+    export PHP_VERSIONS=$HOME/local/php/versions
     source $HOME/local/php-version/php-version.sh && php-version 5.x.x >/dev/null
 
-**for Homebrew installs (the comment block is optional)**
+Change `5.x.x` to the version of PHP you'd like your shell to default to or remove `php-version 5.x.x >/dev/null` if you do not wish to have a default version of PHP loaded into your `$PATH`.
+
+### for Homebrew installs
 
     ########################################################################################
     # php-version (activate default PHP version and autocompletion)
@@ -148,6 +147,7 @@ if you do not wish to have a default version of PHP loaded into your `$PATH`. Th
     export PHP_VERSIONS=$(dirname $(brew --prefix php))
     source $(brew --prefix php-version)/php-version.sh && php-version 5.x.x >/dev/null
 
+Change `5.x.x` to the version of PHP you'd like your shell to default to or remove `php-version 5.x.x >/dev/null` if you do not wish to have a default version of PHP loaded into your `$PATH`.
 
 ## Deactivate / Uninstall
 
@@ -212,35 +212,23 @@ located under a common directory such as `$HOME/local/php/versions`. In this cas
     drwxr-xr-x   4 wilmoore  staff   136B Jan 30 04:02 var
 
 
-## FAQ
-
-**Why is the name `php-version`?**
-
-It was the simplest thing I could think of given [phpenv](https://github.com/CHH/phpenv) was already taken.
-
-**What if my PHP versions are not stored neatly under a single directory like `$HOME/local/php/versions`?**
-
-    % PHP_VERSIONS=/usr/local/Cellar/php php-version 5.4.3
-
-    SWITCHED PHP VERSION TO: 5.4.3
-    NEW PHP ROOT DIRECTORY : /usr/local/Cellar/php/5.4.3
-
-    % which php
-
-    /usr/local/Cellar/php/5.4.3/bin/php
-
-
 ## Troubleshooting
+
+**How should I configure `$PHP_VERSIONS` if my PHP versions are stored multiple directories (i.e. Homebrew)?**
+
+-   Set `$PHP_VERSIONS` as a space-delimited, quoted list of directories as depicted below:
+
+        export PHP_VERSIONS="/usr/local/Cellar/php53 /usr/local/Cellar/php54"
 
 **Sorry, but `php-version` requires that `$PHP_VERSIONS` is set and points to an existing directory.'.**
 
 -   The version was entered incorrectly **(i.e. "php-version 5.3.i" instead of "php-version 5.4.3")**.
 
-**Sorry, but `php-version` was unable to find directory '5.4.3' under '/usr/local/Cellar/php'.**
+**Sorry, but `php-version` was unable to find directory '5.4.3' under ...**
 
 -   You have not installed the requested version of PHP.
 
-**Sorry, but php-version requires that the environment variable `$PHP_VERSIONS` is set in order to initialize bash completion.**
+**Sorry, but `php-version` requires that the environment variable `$PHP_VERSIONS` is set in order to initialize bash completion.**
 
 -   The `$PHP_VERSIONS` environment variable has not been configured or is configured incorrectly.
 
