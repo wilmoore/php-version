@@ -6,7 +6,7 @@
 
 function php-version {
   local PROGRAM_APPNAME='php-version'
-  local PROGRAM_VERSION=0.9.4
+  local PROGRAM_VERSION=0.9.5
 
   # correct # of arguments?
   if [ $# != 1 ]; then
@@ -27,6 +27,7 @@ function php-version {
     return 1
   fi
 
+  # locate selected PHP version
   for _PHP_REPOSITORY in $_PHP_VERSIONS; do
     if [[ -d ${_PHP_REPOSITORY}/${_PHP_VERSION} ]]; then
       local _PHP_ROOT=${_PHP_REPOSITORY}/${_PHP_VERSION}
@@ -34,31 +35,23 @@ function php-version {
     fi
   done
 
-  # bail-out if _PHP_ROOT does not exist
+  # bail-out if we were unable to find a PHP matching given version
   if [[ -z $_PHP_ROOT ]]; then
     echo "Sorry, but ${PROGRAM_APPNAME} was unable to find directory '${_PHP_VERSION}' under '${_PHP_VERSIONS}'." >&2
     return 1
   fi
 
-  # safe to export these now!
-  export PHP_VERSION=${_PHP_VERSION}
-  export PHP_ROOT=${_PHP_ROOT}
-  export PHPRC=${_PHP_ROOT}/etc/php.ini
+  # safe to export
+  export PHP_VERSION=$_PHP_VERSION
+  export PHP_ROOT=$_PHP_ROOT
+  [[ -f $_PHP_ROOT/etc/php.ini ]] && export PHPRC=$_PHP_ROOT/etc/php.ini
+  [[ -d $PHP_ROOT/bin  ]]         && export PATH="$PHP_ROOT/bin:$PATH"
+  [[ -d $PHP_ROOT/sbin ]]         && export PATH="$PHP_ROOT/sbin:$PATH"
 
-  # conditionally prepend `bin` and `sbin` directories to `$PATH`
-  [[ -d $PHP_ROOT/bin  ]] && export PATH="$PHP_ROOT/bin:$PATH"
-  [[ -d $PHP_ROOT/sbin ]] && export PATH="$PHP_ROOT/sbin:$PATH"
-
-  # find php manpath
+  # use configured manpath if it exists, otherwise, use `$PHP_ROOT/share/man`
   local _MANPATH=$(php-config --man-dir)
-  if [ -z $_MANPATH ]; then
-    _MANPATH=${PHP_ROOT}/share/man
-  fi
-
-  # prepend $_MANPATH to $MANPATH if the directory exists
-  if [ -d $_MANPATH ]; then
-    export MANPATH="${_MANPATH}:$MANPATH"
-  fi
+  [[ -z $_MANPATH ]] && _MANPATH=$PHP_ROOT/share/man
+  [[ -d $_MANPATH ]] && export MANPATH="${_MANPATH}:$MANPATH"
 
   echo "SWITCHED PHP VERSION TO: ${PHP_VERSION}"
   echo "NEW PHP ROOT DIRECTORY : ${PHP_ROOT}"
