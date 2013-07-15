@@ -41,6 +41,7 @@
 -   keeps it simple...no magic
 -   promotes multiple, per-user PHP installs
 -   shell completion (e.g. php-version 5.[PRESS-TAB-NOW])
+-   snap versioning (set 5.4 as your version and `php-version` will always load the latest 5.4 version)
 -   provides access to the manpages of the current version by updating your `$MANPATH` environment variable
 -   defers to native shell commands where possible (e.g. `man phpize`)
 -   unobtrusive install/uninstall (we won't leave files and symlinks all over the place)
