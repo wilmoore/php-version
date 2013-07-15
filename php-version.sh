@@ -71,9 +71,21 @@ function php-version {
     fi
   done
 
+  # try a fuzzy match since we were unable to find a PHP matching given version
+  if [[ -z $_PHP_ROOT ]]; then
+    _PHP_VERSION=$(find $_PHP_VERSIONS -type d -maxdepth 1 -mindepth 1 -exec basename {} \; 2>/dev/null | sort -r -t . -k 1,1n -k 2,2n -k 3,3n | grep $_PHP_VERSION 2>/dev/null | tail -1)
+
+    for _PHP_REPOSITORY in $_PHP_VERSIONS; do
+      if [[ -n "$_PHP_VERSION" && -d $_PHP_REPOSITORY/$_PHP_VERSION ]]; then
+        local _PHP_ROOT=$_PHP_REPOSITORY/$_PHP_VERSION
+        break;
+      fi
+    done
+  fi
+
   # bail-out if we were unable to find a PHP matching given version
   if [[ -z $_PHP_ROOT ]]; then
-    echo "Sorry, but $PROGRAM_APPNAME was unable to find directory '$_PHP_VERSION' under '$_PHP_VERSIONS'." >&2
+    echo "Sorry, but $PROGRAM_APPNAME was unable to find version '$1' under '$_PHP_VERSIONS'." >&2
     return 1
   fi
 
