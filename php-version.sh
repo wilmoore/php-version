@@ -6,7 +6,7 @@
 
 function php-version {
   local PROGRAM_APPNAME='php-version'
-  local PROGRAM_VERSION=0.9.7
+  local PROGRAM_VERSION=0.9.8
 
   # local variables
   local _PHP_VERSION=$1
