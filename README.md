@@ -106,11 +106,18 @@ Type `php-version --help` for more configuration options such as how to add extr
 
 **Remove Configuration**
 
-From your `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file remove the above mentioned configuration block.
+Remove the following from `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
+
+    source $HOME/local/php-version/php-version.sh
+        && php-version 5 >/dev/null
 
 **Remove Files**
 
-    % rm -rf /path-to/php-version # or (brew uninstall php-version)
+    # Homebrew
+    % brew remove --force php-version
+
+    # non-Homebrew
+    % rm -rf $HOME/local/php-version
 
 ## Resources
 
