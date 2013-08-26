@@ -2,7 +2,7 @@
 
 **php-version** exposes a single `php-version` command allowing developers to switch between multiple versions of PHP. It is conceptually similar to [rbenv](https://github.com/sstephenson/rbenv); however, **much** `simpler` consisting of a single function which can be sourced into your shell profile.
 
-![](http://i.cloudup.com/6UC5TkBDM5.png)
+![](http://i.cloudup.com/Rl7FXze6ra.png)
 
 
 ## This _IS_ for you if
