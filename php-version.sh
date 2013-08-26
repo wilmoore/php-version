@@ -6,7 +6,7 @@
 
 function php-version {
   local PROGRAM_APPNAME='php-version'
-  local PROGRAM_VERSION=0.9.9
+  local PROGRAM_VERSION=0.9.10
 
   # colors
   COLOR_NORMAL=$(tput sgr0)
@@ -25,7 +25,7 @@ function php-version {
 
   # add default Homebrew directories if brew is installed
   if [[ -n $(which brew) ]]; then
-    export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type d | grep -E 'php[0-9]*'))"
+    export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type d | grep -E 'php[0-9]+'))"
   fi
 
   # add extra directories if configured
