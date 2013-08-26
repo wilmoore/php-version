@@ -88,14 +88,14 @@
 
 Add the following to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
 
-### _Homebrew_
+### Homebrew
 
     source $(brew --prefix php-version)/php-version.sh
         && php-version 5 >/dev/null
 
 Type `php-version --help` for more configuration options such as how to add extra PHP installation paths.
 
-### non-_Homebrew_
+### non-Homebrew
 
     source $HOME/local/php-version/php-version.sh
         && php-version 5 >/dev/null
