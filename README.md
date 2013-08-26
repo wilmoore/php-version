@@ -90,15 +90,17 @@ Add the following to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent
 
 ### Homebrew
 
-    source $(brew --prefix php-version)/php-version.sh
+    test -d $(brew --prefix php-version)
+        && source $(brew --prefix php-version)/php-version.sh
         && php-version 5 >/dev/null
 
 Type `php-version --help` for more configuration options such as how to add extra PHP installation paths.
 
 ### non-Homebrew
 
-    source $HOME/local/php-version/php-version.sh
-        && php-version 5 >/dev/null
+    test -d $HOME/local/php-version
+      && source $HOME/local/php-version/php-version.sh
+      && php-version 5 >/dev/null
 
 Type `php-version --help` for more configuration options such as how to add extra PHP installation paths.
 
