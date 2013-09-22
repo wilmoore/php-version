@@ -28,7 +28,7 @@ function php-version {
   fi
 
   # add default Homebrew directories if brew is installed
-  if [[ -n $(which brew) ]]; then
+  if [[ -n $(command -v brew) ]]; then
     export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type d | grep -E 'php[0-9]+$'))"
   fi
 
@@ -38,17 +38,19 @@ function php-version {
   fi
 
   # get list of all php versions currently in $PATH
-  local _LINKED_PHP_PATHS
-  local _LINKED_PHP_VERSIONS
-  local _LINKED_PHP_PATH_DUPLICATE
-  _LINKED_PHP_PATHS=$(which -a php 2>/dev/null)
-  # Removed Paths already in $_PHP_VERSIONS
-  _LINKED_PHP_PATHS=$(echo "$_LINKED_PHP_PATHS $_PHP_VERSIONS $_PHP_VERSIONS" | tr " " "\n" | sort | uniq -u)
+  if [[ -n $(command -v php) ]]; then
+    local _LINKED_PHP_PATHS
+    local _LINKED_PHP_VERSIONS
+    local _LINKED_PHP_PATH_DUPLICATE
+    _LINKED_PHP_PATHS=$(which -a php 2>/dev/null | sort -u)
+    # Removed Paths already in $_PHP_VERSIONS
+    _LINKED_PHP_PATHS=$(echo "$_LINKED_PHP_PATHS $_PHP_VERSIONS $_PHP_VERSIONS" | tr " " "\n" | sort | uniq -u)
 
-  # Get versions for linked php binaries
-  for linkedPHP in $(echo $_LINKED_PHP_PATHS); do
-    _LINKED_PHP_VERSIONS="$_LINKED_PHP_VERSIONS $($linkedPHP --version 2>/dev/null | grep --only-matching --max-count=1 -E "[0-9]*\.[0-9]*\.[0-9]*")"
-  done
+    # Get versions for linked php binaries
+    for linkedPHP in $(echo $_LINKED_PHP_PATHS); do
+      _LINKED_PHP_VERSIONS="$_LINKED_PHP_VERSIONS $($linkedPHP --version 2>/dev/null | grep --only-matching --max-count=1 -E "[0-9]*\.[0-9]*\.[0-9]*")"
+    done
+  fi
 
   # clean up leading and trailing whitespace
   _PHP_VERSIONS=$(echo $_PHP_VERSIONS |  sed -e 's/^[[:space:]]*//')
@@ -139,6 +141,7 @@ function php-version {
 
     for _PHP_REPOSITORY in $(echo $_PHP_VERSIONS); do
       if [[ -n "$_TARGET_VERSION_FUZZY" && -d $_PHP_REPOSITORY/$_TARGET_VERSION_FUZZY ]]; then
+        _TARGET_VERSION=$_TARGET_VERSION_FUZZY
         local _PHP_ROOT=$_PHP_REPOSITORY/$_TARGET_VERSION_FUZZY
         break;
       fi
@@ -163,6 +166,7 @@ function php-version {
     for linkedPHP in $(echo $_LINKED_PHP_PATHS); do
       _LINKED_PHP_VERSION_MATCH_TEST=$($linkedPHP --version 2>/dev/null | grep --only-matching --max-count=1 -E "[0-9]*\.[0-9]*\.[0-9]*")
       if [[ "$_LINKED_PHP_VERSION_MATCH_TEST" == "$_TARGET_VERSION_FUZZY" ]]; then
+        _TARGET_VERSION=$_TARGET_VERSION_FUZZY
         local _PHP_ROOT="$linkedPHP"
       fi
     done
@@ -178,8 +182,6 @@ function php-version {
   #PATH=$(echo $PATH | sed -e 's/[^:]*php[0-9]*:*//g' )
   PATH=$(echo "$PATH" | sed -e 's/[^:]*php[0-9]*[^:]*\/bin:*//g')
   PHPRC=""
-
-#  _PHP_PATH_SET=$(echo "$_LINKED_PHP_PATHS $_PHP_VERSIONS $_PHP_VERSIONS" | tr " " "\n" | sort | uniq -u)
  
   export PHP_VERSION=$_TARGET_VERSION
   export PHP_ROOT=$_PHP_ROOT
