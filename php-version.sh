@@ -14,9 +14,13 @@ function php-version {
 
   # target version
   local _TARGET_VERSION=$1
+  local _TARGET_VERSION_FUZZY
 
   # PHP installation paths
   local _PHP_VERSIONS=""
+
+  # Set Local _PHP_ROOT_LOCAL
+  local _PHP_ROOT_LOCAL
 
   # add ~/.phps if it exists (default)
   if [[ -d $HOME/.phps ]]; then
@@ -25,7 +29,7 @@ function php-version {
 
   # add default Homebrew directories if brew is installed
   if [[ -n $(which brew) ]]; then
-    export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type d | grep -E 'php[0-9]+'))"
+    export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type d | grep -E 'php[0-9]+$'))"
   fi
 
   # add extra directories if configured
@@ -33,8 +37,25 @@ function php-version {
     export _PHP_VERSIONS="$_PHP_VERSIONS $PHP_VERSIONS"
   fi
 
-  # bail-out if _PHP_VERSIONS is empty
-  if [[ -z $_PHP_VERSIONS ]]; then
+  # get list of all php versions currently in $PATH
+  local _LINKED_PHP_PATHS
+  local _LINKED_PHP_VERSIONS
+  local _LINKED_PHP_PATH_DUPLICATE
+  _LINKED_PHP_PATHS=$(which -a php 2>/dev/null)
+  # Removed Paths already in $_PHP_VERSIONS
+  _LINKED_PHP_PATHS=$(echo "$_LINKED_PHP_PATHS $_PHP_VERSIONS $_PHP_VERSIONS" | tr " " "\n" | sort | uniq -u)
+
+  # Get versions for linked php binaries
+  for linkedPHP in $(echo $_LINKED_PHP_PATHS); do
+    _LINKED_PHP_VERSIONS="$_LINKED_PHP_VERSIONS $($linkedPHP --version 2>/dev/null | grep --only-matching --max-count=1 -E "[0-9]*\.[0-9]*\.[0-9]*")"
+  done
+
+  # clean up leading and trailing whitespace
+  _PHP_VERSIONS=$(echo $_PHP_VERSIONS |  sed -e 's/^[[:space:]]*//')
+  _LINKED_PHP_VERSIONS=$(echo $_LINKED_PHP_VERSIONS |  sed -e 's/^[[:space:]]*//')
+
+  # bail-out if _PHP_VERSIONS and _LINKED_PHP_PATHS are empty
+  if [[ -z $_PHP_VERSIONS && -z $_LINKED_PHP_PATHS ]]; then
     echo 'Sorry, but you do not seem to have any PHP versions installed.' >&2
     echo 'See https://github.com/wilmoore/php-version#install for assistance.' >&2
     return 1
@@ -80,9 +101,13 @@ function php-version {
 
     "")
 
-      _PHP_REPOSITORY=$(find $_PHP_VERSIONS -maxdepth 1 -mindepth 1 -type d -exec basename {} \; 2>/dev/null | sort -r -t . -k 1,1n -k 2,2n -k 3,3n)
+      _PHP_REPOSITORY=$(find $(echo $_PHP_VERSIONS) -maxdepth 1 -mindepth 1 -type d -exec basename {} \; 2>/dev/null | sort -r -t . -k 1,1n -k 2,2n -k 3,3n)
 
-      for version in $_PHP_REPOSITORY; do
+      # add system php to list
+      _PHP_REPOSITORY=$(echo " $_LINKED_PHP_VERSIONS $_PHP_REPOSITORY" | tr " " "\n" | sort -r -u -t . -k 1,1n -k 2,2n -k 3,3n)
+
+      for version in $(echo $_PHP_REPOSITORY); do
+        
         local selected=" "
         local color=$COLOR_NORMAL
 
@@ -100,8 +125,8 @@ function php-version {
   esac
 
   # locate selected PHP version
-  for _PHP_REPOSITORY in $_PHP_VERSIONS; do
-    if [[ -d $_PHP_REPOSITORY/$_TARGET_VERSION ]]; then
+  for _PHP_REPOSITORY in $(echo $_PHP_VERSIONS); do
+    if [[ -d "$_PHP_REPOSITORY/$_TARGET_VERSION" && -z $_PHP_ROOT ]]; then
       local _PHP_ROOT=$_PHP_REPOSITORY/$_TARGET_VERSION
       break;
     fi
@@ -109,12 +134,36 @@ function php-version {
 
   # try a fuzzy match since we were unable to find a PHP matching given version
   if [[ -z $_PHP_ROOT ]]; then
-    _TARGET_VERSION=$(find $_PHP_VERSIONS -maxdepth 1 -mindepth 1 -type d -exec basename {} \; 2>/dev/null | sort -r -t . -k 1,1n -k 2,2n -k 3,3n | grep ^$_TARGET_VERSION 2>/dev/null | tail -1)
 
-    for _PHP_REPOSITORY in $_PHP_VERSIONS; do
-      if [[ -n "$_TARGET_VERSION" && -d $_PHP_REPOSITORY/$_TARGET_VERSION ]]; then
-        local _PHP_ROOT=$_PHP_REPOSITORY/$_TARGET_VERSION
+    _TARGET_VERSION_FUZZY=$(find $(echo $_PHP_VERSIONS) -maxdepth 1 -mindepth 1 -type d -exec basename {} \; 2>/dev/null | sort -r -t . -k 1,1n -k 2,2n -k 3,3n | grep ^$_TARGET_VERSION 2>/dev/null | tail -1)
+
+    for _PHP_REPOSITORY in $(echo $_PHP_VERSIONS); do
+      if [[ -n "$_TARGET_VERSION_FUZZY" && -d $_PHP_REPOSITORY/$_TARGET_VERSION_FUZZY ]]; then
+        local _PHP_ROOT=$_PHP_REPOSITORY/$_TARGET_VERSION_FUZZY
         break;
+      fi
+    done
+  fi
+
+
+  # if the selected version is in the system list, set its path [exact match]
+  local _LINKED_PHP_VERSION_MATCH
+  if [[ -n $(echo "$_TARGET_VERSION $_LINKED_PHP_VERSIONS" | tr " " "\n" | sort | uniq -d) ]]; then
+    for linkedPHP in $(echo $_LINKED_PHP_PATHS); do
+      _LINKED_PHP_VERSION_MATCH_TEST=$($linkedPHP --version 2>/dev/null | grep --only-matching --max-count=1 -E "[0-9]*\.[0-9]*\.[0-9]*")
+      if [[ "$_LINKED_PHP_VERSION_MATCH_TEST" == "$_TARGET_VERSION" && -z $_PHP_ROOT ]]; then
+        local _PHP_ROOT="$linkedPHP"
+      fi
+    done
+  fi
+
+  # if the selected version is in the system list, set its path [fuzzy match]
+  if [[ -z $_PHP_ROOT ]]; then
+    _TARGET_VERSION_FUZZY=$(echo "$_LINKED_PHP_VERSIONS" | sort -r -t . -k 1,1n -k 2,2n -k 3,3n | tr " " "\n" | grep ^$_TARGET_VERSION 2>/dev/null | tail -1)
+    for linkedPHP in $(echo $_LINKED_PHP_PATHS); do
+      _LINKED_PHP_VERSION_MATCH_TEST=$($linkedPHP --version 2>/dev/null | grep --only-matching --max-count=1 -E "[0-9]*\.[0-9]*\.[0-9]*")
+      if [[ "$_LINKED_PHP_VERSION_MATCH_TEST" == "$_TARGET_VERSION_FUZZY" ]]; then
+        local _PHP_ROOT="$linkedPHP"
       fi
     done
   fi
@@ -125,7 +174,13 @@ function php-version {
     return 1
   fi
 
-  # export current paths
+  # Cleanup existing php paths and ini configuration
+  #PATH=$(echo $PATH | sed -e 's/[^:]*php[0-9]*:*//g' )
+  PATH=$(echo "$PATH" | sed -e 's/[^:]*php[0-9]*[^:]*\/bin:*//g')
+  PHPRC=""
+
+#  _PHP_PATH_SET=$(echo "$_LINKED_PHP_PATHS $_PHP_VERSIONS $_PHP_VERSIONS" | tr " " "\n" | sort | uniq -u)
+ 
   export PHP_VERSION=$_TARGET_VERSION
   export PHP_ROOT=$_PHP_ROOT
   [[ -f $_PHP_ROOT/etc/php.ini ]] && export PHPRC=$_PHP_ROOT/etc/php.ini
