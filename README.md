@@ -44,12 +44,14 @@
 
 **NOTE**: The _fuzzy_ and _snap_ versioning features are really a single feature used to accomplish two different goals.
 
+
 ## Non-Features
 
 -   no [shims][], sub-shells, symlinks or `cd` [hooks][].
 -   we won't leave files and symlinks all over the place.
 -   does not attempt to manage Apache, MySQL, etc.
 -   does not attempt to compile, build, or install PHP.
+
 
 ## Usage Examples
 
@@ -84,46 +86,34 @@
 
 [Alternative (i.e. non-Homebrew) installation methods][opt-install] are documented on the wiki.
 
+
 ## Setup
 
-Add the following to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
+Add one of the following to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
 
-### Homebrew
-
-	source $(brew --prefix php-version)/php-version.sh \
-		&& php-version 5 > /dev/null 2>&1
-
-Type `php-version --help` for more configuration options such as how to add extra PHP installation paths.
-
-### non-Homebrew
-
-  	source $HOME/local/php-version/php-version.sh \
-  		&& php-version 5 2>/dev/null
+    # Homebrew (recommended)
+    source $(brew --prefix php-version)/php-version.sh \
+        && php-version 5 2>/dev/null
+      
+    # non-Homebrew
+    source $HOME/local/php-version/php-version.sh \
+        && php-version 5 2>/dev/null
 
 Type `php-version --help` for more configuration options such as how to add extra PHP installation paths.
+
 
 ## Deactivate / Uninstall
 
-**Remove Configuration**
+1. Remove [setup](https://github.com/wilmoore/php-version#setup) configuration.
 
-Remove the following from `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
+2. Enter one of the following commands listed below to remove associated files.
 
-	source $(brew --prefix php-version)/php-version.sh \
-		&& php-version 5 > /dev/null 2>&1
-		
-	-- or --
-	
-  	source $HOME/local/php-version/php-version.sh \
-  		&& php-version 5 2>/dev/null
+        # Homebrew (recommended)
+        % brew remove --force php-version
 
+        # non-Homebrew
+        % rm -rf $HOME/local/php-version
 
-**Remove Files**
-
-    # Homebrew
-    % brew remove --force php-version
-
-    # non-Homebrew
-    % rm -rf $HOME/local/php-version
 
 ## Resources
 
@@ -141,11 +131,13 @@ Remove the following from `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equiv
 ## Contributors
 
 ```
-93  Wil Moore III
+99  Wil Moore III
+ 3  Jason P. Scharf
  3  Tugdual Saunier
  1  Gábor Egyed
  1  Martin Lundberg
 ```
+
 
 ## Alternatives
 
