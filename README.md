@@ -35,14 +35,11 @@
 ## Features
 
 -   [Homebrew installed PHP versions][homebrew-php] and PHP verions installed into `~/.phps` are picked up automatically.
--   **snap versioning** -- set `5.5` as your default and `php-version` will always use the latest installed 5.5.x version as your default.
--   **fuzzy versioning** -- type `php-version 5` and the latest installed 5.x version will be used.
--   **per version `php.ini`** -- we `export PHPRC` if a version-specific `php.ini` exists.
--   **configurable** -- `php-version --help` for details.
+-   **snap versioning**: type or add `php-version 5` to your shell configuration and the latest installed 5.x version will always be used.
+-   **per version `php.ini`**: we `export PHPRC` if a version-specific `php.ini` exists.
+-   **configurable**: `php-version --help` for details.
 -   **bash and zsh** supported.
--   **tiny** -- less than 200 lines of shell `bash` scripting.
-
-**NOTE**: The _fuzzy_ and _snap_ versioning features are really a single feature used to accomplish two different goals.
+-   **tiny**: less than 200 lines of `bash` shell scripting.
 
 
 ## Non-Features
@@ -92,14 +89,12 @@
 Add one of the following to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
 
     # Homebrew (recommended)
-    source $(brew --prefix php-version)/php-version.sh \
-        && php-version 5 2>/dev/null
+    source $(brew --prefix php-version)/php-version.sh && php-version 5
       
     # non-Homebrew
-    source $HOME/local/php-version/php-version.sh \
-        && php-version 5 2>/dev/null
+    source $HOME/local/php-version/php-version.sh && php-version 5
 
-Type `php-version --help` for more configuration options such as how to add extra PHP installation paths.
+Type `php-version --help` for more configuration options such as how to add extra PHP installation paths or `php-config --version` to find out which `php` version is active.
 
 
 ## Deactivate / Uninstall
