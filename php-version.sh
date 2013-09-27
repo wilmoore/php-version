@@ -125,14 +125,13 @@ function php-version {
 
   # export current paths
   export PHPRC=""
-  export PHP_ROOT=$_PHP_ROOT
   [[ -f $_PHP_ROOT/etc/php.ini ]] && export PHPRC=$_PHP_ROOT/etc/php.ini
-  [[ -d $PHP_ROOT/bin  ]]         && export PATH="$PHP_ROOT/bin:$PATH"
-  [[ -d $PHP_ROOT/sbin ]]         && export PATH="$PHP_ROOT/sbin:$PATH"
+  [[ -d $_PHP_ROOT/bin  ]]        && export PATH="$_PHP_ROOT/bin:$PATH"
+  [[ -d $_PHP_ROOT/sbin ]]        && export PATH="$_PHP_ROOT/sbin:$PATH"
 
-  # use configured manpath if it exists, otherwise, use `$PHP_ROOT/share/man`
+  # use configured manpath if it exists, otherwise, use `$_PHP_ROOT/share/man`
   local _MANPATH=$(php-config --man-dir)
-  [[ -z $_MANPATH ]] && _MANPATH=$PHP_ROOT/share/man
+  [[ -z $_MANPATH ]] && _MANPATH=$_PHP_ROOT/share/man
   [[ -d $_MANPATH ]] && export MANPATH="$_MANPATH:$MANPATH"
 
   hash -r
