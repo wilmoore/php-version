@@ -4,7 +4,7 @@
 
 function php-version {
   local PROGRAM_APPNAME='php-version'
-  local PROGRAM_VERSION=0.9.11
+  local PROGRAM_VERSION=0.10.0
 
   # colors
   COLOR_NORMAL=$(tput sgr0)
