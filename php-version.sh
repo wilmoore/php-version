@@ -22,7 +22,7 @@ function php-version {
   fi
 
   # add default Homebrew directories if brew is installed
-  if [[ -n $(which brew) ]]; then
+  if [[ -n $(command -v brew) ]]; then
     export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type d | grep -E 'php[0-9]+$'))"
   fi
 
@@ -134,5 +134,7 @@ function php-version {
   local _MANPATH=$(php-config --man-dir)
   [[ -z $_MANPATH ]] && _MANPATH=$PHP_ROOT/share/man
   [[ -d $_MANPATH ]] && export MANPATH="$_MANPATH:$MANPATH"
+
+  hash -r
 }
 
