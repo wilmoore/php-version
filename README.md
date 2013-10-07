@@ -1,6 +1,6 @@
 # simple PHP version switching
 
-**php-version** exposes a single `php-version` command allowing developers to switch between multiple versions of PHP.
+**php-version** exposes a `php-version` command allowing developers to switch between versions of PHP.
 
 ![](http://i.cloudup.com/Rl7FXze6ra.png)
 
