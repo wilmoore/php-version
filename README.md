@@ -1,6 +1,6 @@
 # simple PHP version switching
 
-**php-version** exposes a single `php-version` command allowing developers to switch between multiple versions of PHP. It is conceptually similar to [rbenv](https://github.com/sstephenson/rbenv); however, **much** `simpler` consisting of a single function which can be sourced into your shell profile.
+**php-version** exposes a single `php-version` command allowing developers to switch between multiple versions of PHP.
 
 ![](http://i.cloudup.com/Rl7FXze6ra.png)
 
@@ -40,8 +40,8 @@
 -   **snap versioning**: type or add `php-version 5` to your shell configuration and the latest installed 5.x version will be switched to automatically.
 -   **per version `php.ini`**: we `export PHPRC` if a version-specific `php.ini` exists.
 -   **configurable**: `php-version --help` for details.
--   **bash and zsh** supported.
--   **tiny**: less than 200 lines of `bash` shell scripting.
+-   **bash and zsh** actively supported; though care has been taken such that other shells _should_ work as well.
+-   **tiny**: less than 150 LOC; a single function sourced via `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file.
 
 
 ## Non-Features
