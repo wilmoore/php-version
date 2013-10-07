@@ -4,7 +4,7 @@
 
 function php-version {
   local PROGRAM_APPNAME='php-version'
-  local PROGRAM_VERSION=0.10.0
+  local PROGRAM_VERSION=0.10.1
 
   # colors
   COLOR_NORMAL=$(tput sgr0)
@@ -107,7 +107,7 @@ function php-version {
 
   # try a fuzzy match since we were unable to find a PHP matching given version
   if [[ -z $_PHP_ROOT ]]; then
-    _TARGET_VERSION_FUZZY=$(find $(echo $_PHP_VERSIONS) -maxdepth 1 -mindepth 1 -type d -exec basename {} \; 2>/dev/null | sort -r -t . -k 1,1n -k 2,2n -k 3,3n | grep ^$_TARGET_VERSION 2>/dev/null | tail -1)
+    _TARGET_VERSION_FUZZY=$(find $(echo $_PHP_VERSIONS) -maxdepth 1 -mindepth 1 -type d -exec basename {} \; 2>/dev/null | sort -r -t . -k 1,1n -k 2,2n -k 3,3n | grep -E "^$_TARGET_VERSION" 2>/dev/null | tail -1)
 
     for _PHP_REPOSITORY in $(echo $_PHP_VERSIONS); do
       if [[ -n "$_TARGET_VERSION_FUZZY" && -d $_PHP_REPOSITORY/$_TARGET_VERSION_FUZZY ]]; then
