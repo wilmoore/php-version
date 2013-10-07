@@ -34,8 +34,10 @@
 
 ## Features
 
--   [Homebrew installed PHP versions][homebrew-php] and PHP verions installed into `~/.phps` are picked up automatically.
--   **snap versioning**: type or add `php-version 5` to your shell configuration and the latest installed 5.x version will always be used.
+-   [Homebrew installed PHP versions][homebrew-php] are picked up automatically.
+-   PHP verions installed [into `~/.phps`][build-php-vers] are picked up automatically.
+-   PHP verions listed in the `$PHP_VERSIONS` shell variable are picked up automatically.
+-   **snap versioning**: type or add `php-version 5` to your shell configuration and the latest installed 5.x version will be switched to automatically.
 -   **per version `php.ini`**: we `export PHPRC` if a version-specific `php.ini` exists.
 -   **configurable**: `php-version --help` for details.
 -   **bash and zsh** supported.
@@ -110,18 +112,11 @@ Type `php-version --help` for more configuration options such as how to add extr
         % rm -rf $HOME/local/php-version
 
 
-## Resources
+## More Info
 
-**General**
-
+-   [Building PHP Versions][build-php-vers]
 -   [Exploring PHP][exploring]
 -   [Troubleshooting][trouble]
-
-**Options for Installing PHP**
-
--   [homebrew-php][homebrew-php] (recommended)
--   [php-build][php-build]
-
 
 ## Contributors
 
@@ -160,14 +155,15 @@ Type `php-version --help` for more configuration options such as how to add extr
 
 
 
-[php-build]:    https://github.com/CHH/php-build
-[homebrew-php]: https://github.com/josegonzalez/homebrew-php
-[windows-bin]:  http://windows.php.net/download
-[windows-port]: https://github.com/wilmoore/php-version/issues/2
-[manual-build]: https://github.com/wilmoore/php-version#compilation-recommendations
-[shims]:        https://github.com/sstephenson/rbenv#understanding-shims
-[hooks]:        https://rvm.io/workflow/hooks
-[opt-install]:  https://github.com/wilmoore/php-version/wiki/Installing
-[exploring]:    https://github.com/wilmoore/php-version/wiki/Exploring-PHP
-[trouble]:      https://github.com/wilmoore/php-version/wiki/Troubleshooting
+[php-build]:        https://github.com/CHH/php-build
+[homebrew-php]:     https://github.com/josegonzalez/homebrew-php
+[build-php-vers]:   https://github.com/wilmoore/php-version/wiki/Building-PHP-Versions
+[windows-bin]:      http://windows.php.net/download
+[windows-port]:     https://github.com/wilmoore/php-version/issues/2
+[manual-build]:     https://github.com/wilmoore/php-version#compilation-recommendations
+[shims]:            https://github.com/sstephenson/rbenv#understanding-shims
+[hooks]:            https://rvm.io/workflow/hooks
+[opt-install]:      https://github.com/wilmoore/php-version/wiki/Installing
+[exploring]:        https://github.com/wilmoore/php-version/wiki/Exploring-PHP
+[trouble]:          https://github.com/wilmoore/php-version/wiki/Troubleshooting
 
