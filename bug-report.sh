@@ -1,6 +1,5 @@
 ################################################################################
 # bug-report: collect environment information for bug reports.
-#!/bin/env sh
 ################################################################################
 
 cat <<-EOF
@@ -10,8 +9,8 @@ cat <<-EOF
 
 ## Script
 
-  VERSION: $(command -v php-version || echo 'NOT FOUND')
-  TYPE:    $(type php-version || echo 'NOT FOUND')
+  VERSION: $(command -v php-version 2>/dev/null || echo 'NOT FOUND')
+  TYPE:    $(type -a php-version 2>/dev/null || echo 'NOT FOUND')
 
 ## Environment
 
@@ -31,4 +30,3 @@ cat <<-EOF
   VERSION: $(php-config --version)
 
 EOF
-
