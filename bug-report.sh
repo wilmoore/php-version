@@ -9,8 +9,8 @@ cat <<-EOF
 
 ## Script
 
-  VERSION: $(command -v php-version 2>/dev/null || echo 'NOT FOUND')
-  TYPE:    $(type -a php-version 2>/dev/null || echo 'NOT FOUND')
+  TYPE:    $(command -v php-version 2>/dev/null || echo 'NOT FOUND')
+  VERSION: $(php-version --version  2>/dev/null || echo 'NOT FOUND')
 
 ## Environment
 

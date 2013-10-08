@@ -43,27 +43,25 @@ function php-version {
 
     -h|--help)
 
-      echo "$PROGRAM_APPNAME $PROGRAM_VERSION"                              >&2
-      echo ''                                                               >&2
-      echo "Usage: $PROGRAM_APPNAME <version>"                              >&2
-      echo ''                                                               >&2
-      echo '  Examples:'                                                    >&2
-      echo ''                                                               >&2
-      echo "    $PROGRAM_APPNAME 5"                                         >&2
-      echo ''                                                               >&2
-      echo "    $PROGRAM_APPNAME 5.5"                                       >&2
-      echo ''                                                               >&2
-      echo "    $PROGRAM_APPNAME 5.5.3"                                     >&2
-      echo ''                                                               >&2
-      echo ''                                                               >&2
-      echo 'CONFIGURATION EXAMPLES'                                         >&2
-      echo ''                                                               >&2
-      echo '  PHP_VERSIONS'                                                 >&2
-      echo '    space-delimited list of additional PHP install paths'       >&2
-      echo ''                                                               >&2
-      echo '    non-Homebrew:'                                              >&2
-      echo '    export PHP_VERSIONS="~/.phps ~/local/php/versions"'         >&2
-      echo ''                                                               >&2
+      echo "$PROGRAM_APPNAME $PROGRAM_VERSION"
+      echo ''
+      echo "Usage: $PROGRAM_APPNAME <version>"
+      echo ''
+      echo '  Examples:'
+      echo ''
+      echo "    $PROGRAM_APPNAME 5"
+      echo ''
+      echo "    $PROGRAM_APPNAME 5.5"
+      echo ''
+      echo "    $PROGRAM_APPNAME 5.5.3"
+      echo ''
+      echo ''
+      echo 'OPTIONAL CONFIGURATION:'
+      echo ''
+      echo '  # define a space-delimited list of additional PHP install paths to search'
+      echo '  export PHP_VERSIONS="~/local/php ~/php/versions"'
+      echo "  source path/to/$PROGRAM_APPNAME.sh"
+      echo ''
 
 
       return 0
@@ -71,7 +69,7 @@ function php-version {
 
     -v|--version)
 
-      echo "$PROGRAM_APPNAME version $PROGRAM_VERSION" >&2
+      echo "$PROGRAM_APPNAME version $PROGRAM_VERSION"
 
       return 0
       ;;
@@ -80,7 +78,7 @@ function php-version {
 
       _PHP_REPOSITORY=$(find $(echo $_PHP_VERSIONS) -maxdepth 1 -mindepth 1 -type d -exec basename {} \; 2>/dev/null | sort -r -t . -k 1,1n -k 2,2n -k 3,3n)
 
-      for version in $_PHP_REPOSITORY; do
+      for version in $(echo $_PHP_REPOSITORY); do
         local selected=" "
         local color=$COLOR_NORMAL
 
