@@ -116,7 +116,7 @@ Type `php-version --help` for more configuration options such as how to add extr
 
 1. Copy the bug report output to your clipboard (`pbcopy` works on Mac OSX; use your OS equivalent)
 
-    % source bug-report.sh | pbcopy
+        % source bug-report.sh | pbcopy
 
 2. File an [issue](https://github.com/wilmoore/php-version/issues?state=open).
 
