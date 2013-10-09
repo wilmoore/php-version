@@ -112,11 +112,21 @@ Type `php-version --help` for more configuration options such as how to add extr
         % rm -rf $HOME/local/php-version
 
 
+## Having Issues?
+
+1. Copy the bug report output to your clipboard (`pbcopy` works on Mac OSX; use your OS equivalent)
+
+    % source bug-report.sh | pbcopy
+
+2. File an [issue](https://github.com/wilmoore/php-version/issues?state=open).
+
+
 ## More Info
 
 -   [Building PHP Versions][build-php-vers]
 -   [Exploring PHP][exploring]
 -   [Troubleshooting][trouble]
+
 
 ## Contributors
 
@@ -138,6 +148,7 @@ Type `php-version --help` for more configuration options such as how to add extr
 -   [phpfarm](http://sourceforge.net/p/phpfarm/wiki/Home/)
 -   [GNU Stow](http://www.gnu.org/s/stow/)
 -   [Encap](http://www.encap.org/)
+-   [phpswitch](https://github.com/jubianchi/phpswitch)
 
 
 ## Inspiration
