@@ -23,7 +23,7 @@ function php-version {
 
   # add default Homebrew directories if brew is installed
   if [[ -n $(command -v brew) ]]; then
-    export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type d | grep -E 'php[0-9]+$'))"
+    export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type d | grep -E 'php[0-9]*$'))"
   fi
 
   # add extra directories if configured
