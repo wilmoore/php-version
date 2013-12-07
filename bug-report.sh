@@ -30,4 +30,8 @@ cat <<-EOF
 
   VERSION: $(php-config --version)
 
+## INI
+
+$(php --ini | sed 's/^/  /')
+
 EOF
