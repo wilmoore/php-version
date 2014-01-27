@@ -31,13 +31,6 @@ function php-version {
     export _PHP_VERSIONS="$_PHP_VERSIONS $PHP_VERSIONS"
   fi
 
-  # bail-out if _PHP_VERSIONS is empty
-  if [[ -z $_PHP_VERSIONS ]]; then
-    echo 'Sorry, but you do not seem to have any PHP versions installed.' >&2
-    echo 'See https://github.com/wilmoore/php-version#install for assistance.' >&2
-    return 1
-  fi
-
   # argument parsing
   case "$1" in
 
@@ -75,6 +68,13 @@ function php-version {
       ;;
 
     "")
+
+      # bail-out if _PHP_VERSIONS is empty
+      if [[ -z $_PHP_VERSIONS ]]; then
+        echo 'Sorry, but you do not seem to have any PHP versions installed.' >&2
+        echo 'See https://github.com/wilmoore/php-version#install for assistance.' >&2
+        return 1
+      fi
 
       _PHP_REPOSITORY=$(find $(echo $_PHP_VERSIONS) -maxdepth 1 -mindepth 1 -type d -exec basename {} \; 2>/dev/null | sort -r -t . -k 1,1n -k 2,2n -k 3,3n)
 
