@@ -35,8 +35,8 @@
 ## Features
 
 -   [Homebrew installed PHP versions][homebrew-php] are picked up automatically.
--   PHP verions installed [into `~/.phps`][build-php-vers] are picked up automatically.
--   PHP verions listed in the `$PHP_VERSIONS` shell variable are picked up automatically.
+-   PHP versions installed [into `~/.phps`][build-php-vers] are picked up automatically.
+-   PHP versions listed in the `$PHP_VERSIONS` shell variable are picked up automatically.
 -   **snap versioning**: Use a partial version number (i.e. `php-version 5`) to automatically use the latest 5.x version.
 -   **per version `php.ini`**: we `export PHPRC` if a version-specific `php.ini` exists.
 -   **configurable**: `php-version --help` for details.
