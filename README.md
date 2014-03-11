@@ -7,7 +7,7 @@
 
 ## This _IS_ for you if
 
--   You are not satisifed with heavy handed *AMP installers.
+-   You are not satisifed with heavy handed *AMP or PPA-based installers.
 -   You [use multiple][homebrew-php] [versions][php-build] of PHP on Linux or Mac.
 -   You download [pre-compiled PHP binaries for Windows][windows-bin].
 -   You want to run your automated tests against multiple PHP versions.
@@ -40,7 +40,7 @@
 -   **snap versioning**: Use a partial version number (i.e. `php-version 5`) to automatically use the latest 5.x version.
 -   **per version `php.ini`**: we `export PHPRC` if a version-specific `php.ini` exists.
 -   **configurable**: `php-version --help` for details.
--   **bash and zsh** actively supported; though care has been taken such that other shells _should_ work as well.
+-   **bash and zsh** actively supported; though care has been taken such that other shells _may_ work as well (but only [bash] and [zsh] are supported).
 -   **tiny**: less than 150 LOC; a single function sourced via your shell's rc file.
 
 
@@ -50,6 +50,7 @@
 -   we won't leave files and symlinks all over the place.
 -   does not attempt to manage Apache, MySQL, etc.
 -   does not attempt to compile, build, or install PHP.
+-   does not attempt to support OS package manager installed (i.e. ppa, etc.) PHP versions.
 
 
 ## Usage Examples
@@ -179,4 +180,7 @@ Type `php-version --help` for more configuration options such as how to add extr
 [opt-install]:      https://github.com/wilmoore/php-version/wiki/Installing
 [exploring]:        https://github.com/wilmoore/php-version/wiki/Exploring-PHP
 [trouble]:          https://github.com/wilmoore/php-version/wiki/Troubleshooting
+[bash]:             http://www.gnu.org/software/bash/
+[zsh]:              http://www.zsh.org/
+
 
