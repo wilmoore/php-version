@@ -89,7 +89,7 @@
 
 ## Setup
 
-Add one of the following to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
+> Add one of the following to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
 
     # Homebrew (recommended)
     source $(brew --prefix php-version)/php-version.sh && php-version 5
@@ -99,6 +99,11 @@ Add one of the following to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equ
 
 Type `php-version --help` for more configuration options such as how to add extra PHP installation paths or `php-config --version` to find out which `php` version is active.
 
+> If you have PHP versions in multiple directories, you can list them in the environment variable `PHP_VERSIONS` separated by spaces as depicted below:
+
+    export PHP_VERSIONS="~/local/php ~/php/versions"'
+
+NOTE: do this before you source `php-version.sh`:
 
 ## Deactivate / Uninstall
 
