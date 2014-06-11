@@ -103,7 +103,7 @@ Type `php-version --help` for more configuration options such as how to add extr
 
     export PHP_VERSIONS="~/local/php ~/php/versions"'
 
-NOTE: do this before you source `php-version.sh`:
+**NOTE**: do this before you source `php-version.sh`:
 
 ## Deactivate / Uninstall
 
