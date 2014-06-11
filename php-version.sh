@@ -36,26 +36,27 @@ function php-version {
 
     -h|--help)
 
-      echo "$PROGRAM_APPNAME $PROGRAM_VERSION"
-      echo ''
-      echo "Usage: $PROGRAM_APPNAME <version>"
-      echo ''
-      echo '  Examples:'
-      echo ''
-      echo "    $PROGRAM_APPNAME 5"
-      echo ''
-      echo "    $PROGRAM_APPNAME 5.5"
-      echo ''
-      echo "    $PROGRAM_APPNAME 5.5.3"
-      echo ''
-      echo ''
-      echo 'OPTIONAL CONFIGURATION:'
-      echo ''
-      echo '  # define a space-delimited list of additional PHP install paths to search'
-      echo '  export PHP_VERSIONS="~/local/php ~/php/versions"'
-      echo "  source path/to/$PROGRAM_APPNAME.sh"
-      echo ''
+      cat << HEREDOC
+$PROGRAM_APPNAME $PROGRAM_VERSION
 
+Usage: $PROGRAM_APPNAME <version>
+
+  Examples:
+
+    $PROGRAM_APPNAME 5
+
+    $PROGRAM_APPNAME 5.5
+
+    $PROGRAM_APPNAME 5.5.3
+
+
+OPTIONAL CONFIGURATION:
+
+  # define a space-delimited list of additional PHP install paths to search
+  export PHP_VERSIONS="\~/local/php \~/php/versions"
+  source path/to/$PROGRAM_APPNAME.sh
+
+HEREDOC
 
       return 0
       ;;
