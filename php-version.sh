@@ -36,27 +36,28 @@ function php-version {
 
     -h|--help)
 
-      cat << HEREDOC
-$PROGRAM_APPNAME $PROGRAM_VERSION
+	cat <<-USAGE
 
-Usage: $PROGRAM_APPNAME <version>
+	$PROGRAM_APPNAME $PROGRAM_VERSION
 
-  Examples:
+	Usage:
+		$PROGRAM_APPNAME --help     Show this message
+		$PROGRAM_APPNAME --version  Print the version
+		$PROGRAM_APPNAME <version>  Modify PATH to use <version>
+		$PROGRAM_APPNAME            Show all available versions and denote the currently activated version
 
-    $PROGRAM_APPNAME 5
+	Example:
+		$PROGRAM_APPNAME 5          Activate the latest available 5.x version
+		$PROGRAM_APPNAME 5.5        Activate the latest available 5.5.x version
+		$PROGRAM_APPNAME 5.5.13     Activate version 5.5.13 specifically
 
-    $PROGRAM_APPNAME 5.5
+	Configuration Options:
+		https://github.com/wilmoore/php-version#setup
 
-    $PROGRAM_APPNAME 5.5.3
+	Uninstall:
+		https://github.com/wilmoore/php-version#deactivate--uninstall
 
-
-OPTIONAL CONFIGURATION:
-
-  # define a space-delimited list of additional PHP install paths to search
-  export PHP_VERSIONS="\~/local/php \~/php/versions"
-  source path/to/$PROGRAM_APPNAME.sh
-
-HEREDOC
+	USAGE
 
       return 0
       ;;
