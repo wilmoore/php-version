@@ -36,26 +36,28 @@ function php-version {
 
     -h|--help)
 
-      echo "$PROGRAM_APPNAME $PROGRAM_VERSION"
-      echo ''
-      echo "Usage: $PROGRAM_APPNAME <version>"
-      echo ''
-      echo '  Examples:'
-      echo ''
-      echo "    $PROGRAM_APPNAME 5"
-      echo ''
-      echo "    $PROGRAM_APPNAME 5.5"
-      echo ''
-      echo "    $PROGRAM_APPNAME 5.5.3"
-      echo ''
-      echo ''
-      echo 'OPTIONAL CONFIGURATION:'
-      echo ''
-      echo '  # define a space-delimited list of additional PHP install paths to search'
-      echo '  export PHP_VERSIONS="~/local/php ~/php/versions"'
-      echo "  source path/to/$PROGRAM_APPNAME.sh"
-      echo ''
+	cat <<-USAGE
 
+	$PROGRAM_APPNAME $PROGRAM_VERSION
+
+	Usage:
+		$PROGRAM_APPNAME --help     Show this message
+		$PROGRAM_APPNAME --version  Print the version
+		$PROGRAM_APPNAME <version>  Modify PATH to use <version>
+		$PROGRAM_APPNAME            Show all available versions and denote the currently activated version
+
+	Example:
+		$PROGRAM_APPNAME 5          Activate the latest available 5.x version
+		$PROGRAM_APPNAME 5.5        Activate the latest available 5.5.x version
+		$PROGRAM_APPNAME 5.5.13     Activate version 5.5.13 specifically
+
+	Configuration Options:
+		https://github.com/wilmoore/php-version#setup
+
+	Uninstall:
+		https://github.com/wilmoore/php-version#deactivate--uninstall
+
+	USAGE
 
       return 0
       ;;
