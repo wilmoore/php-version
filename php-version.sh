@@ -4,7 +4,8 @@
 
 function php-version {
   local PROGRAM_APPNAME='php-version'
-  local PROGRAM_VERSION=0.10.4
+  local PROGRAM_VERSION=0.11.0
+  local PROGRAM_DISPLAY_VERSION="$PROGRAM_APPNAME v$PROGRAM_VERSION"
 
   # colors
   COLOR_NORMAL=$(tput sgr0)
@@ -34,37 +35,47 @@ function php-version {
   # argument parsing
   case "$1" in
 
-    -h|--help)
+    -h|--help|-u|--usage)
 
-      echo "$PROGRAM_APPNAME $PROGRAM_VERSION"
-      echo ''
-      echo "Usage: $PROGRAM_APPNAME <version>"
-      echo ''
-      echo '  Examples:'
-      echo ''
-      echo "    $PROGRAM_APPNAME 5"
-      echo ''
-      echo "    $PROGRAM_APPNAME 5.5"
-      echo ''
-      echo "    $PROGRAM_APPNAME 5.5.3"
-      echo ''
-      echo ''
-      echo 'OPTIONAL CONFIGURATION:'
-      echo ''
-      echo '  # define a space-delimited list of additional PHP install paths to search'
-      echo '  export PHP_VERSIONS="~/local/php ~/php/versions"'
-      echo "  source path/to/$PROGRAM_APPNAME.sh"
-      echo ''
+      echo $PROGRAM_DISPLAY_VERSION
 
+      cat <<-USAGE
+
+      Usage:
+        $PROGRAM_APPNAME --help     Show this message
+        $PROGRAM_APPNAME --version  Print the version
+        $PROGRAM_APPNAME <version>  Modify PATH to use <version>
+        $PROGRAM_APPNAME            Show all available versions and denote the currently activated version
+
+      Example:
+        $PROGRAM_APPNAME 5          Activate the latest available 5.x version
+        $PROGRAM_APPNAME 5.5        Activate the latest available 5.5.x version
+        $PROGRAM_APPNAME 5.5.13     Activate version 5.5.13 specifically
+
+      Configuration Options:
+        https://github.com/wilmoore/php-version#setup
+
+      Uninstall:
+        https://github.com/wilmoore/php-version#deactivate--uninstall
+
+			USAGE
 
       return 0
       ;;
 
     -v|--version)
 
-      echo "$PROGRAM_APPNAME version $PROGRAM_VERSION"
+      echo $PROGRAM_DISPLAY_VERSION
 
       return 0
+      ;;
+
+    -*)
+
+      printf "\e[0;31m%s: %s: unrecognized option\e[0m\n\n" $0 $1 >&2
+      php-version --help >&2
+
+      return 1
       ;;
 
     "")
