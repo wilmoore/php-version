@@ -32,6 +32,15 @@ function php-version {
     export _PHP_VERSIONS="$_PHP_VERSIONS $PHP_VERSIONS"
   fi
 
+  # export the space-separated string as array
+  _PHP_REPOSITORIES=()
+  for _PHP_VERSION in $(echo $_PHP_VERSIONS | tr " " "\n"); do
+    _PHP_REPOSITORIES=("${_PHP_REPOSITORIES[@]}" $_PHP_VERSION)
+  done
+
+  # unset the string
+  _PHP_VERSIONS=
+
   # argument parsing
   case "$1" in
 
@@ -80,16 +89,24 @@ function php-version {
 
     "")
 
-      # bail-out if _PHP_VERSIONS is empty
-      if [[ -z $_PHP_VERSIONS ]]; then
+      # bail-out if _PHP_REPOSITORIES is an empty array
+      if [ ${#_PHP_REPOSITORIES[@]} -eq 0 ]; then
         echo 'Sorry, but you do not seem to have any PHP versions installed.' >&2
         echo 'See https://github.com/wilmoore/php-version#install for assistance.' >&2
         return 1
       fi
 
-      _PHP_REPOSITORY=$(find $(echo $_PHP_VERSIONS) -maxdepth 1 -mindepth 1 -type d -exec basename {} \; 2>/dev/null | sort -r -t . -k 1,1n -k 2,2n -k 3,3n)
+      # Loop through all repositories and get every single php-version
+      _PHP_VERSIONS=()
+      for _PHP_REPOSITORY in "${_PHP_REPOSITORIES[@]}"; do
+        for _dir in $(find $(echo $_PHP_REPOSITORY) -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
+          _PHP_VERSIONS=("${_PHP_VERSIONS[@]}" "$($_dir/bin/php-config --version 2>/dev/null)")
+        done
+      done
 
-      for version in $(echo $_PHP_REPOSITORY); do
+      _PHP_VERSIONS=$(IFS=$'\n'; echo "${_PHP_VERSIONS[*]}" | sort -r -t . -k 1,1n -k 2,2n -k 3,3n)
+
+      for version in $(echo $_PHP_VERSIONS | tr " " "\n"); do
         local selected=" "
         local color=$COLOR_NORMAL
 
@@ -107,7 +124,7 @@ function php-version {
   esac
 
   # locate selected PHP version
-  for _PHP_REPOSITORY in $(echo $_PHP_VERSIONS); do
+  for _PHP_REPOSITORY in "${_PHP_REPOSITORIES[@]}"; do
     if [[ -d "$_PHP_REPOSITORY/$_TARGET_VERSION" && -z $_PHP_ROOT ]]; then
       local _PHP_ROOT=$_PHP_REPOSITORY/$_TARGET_VERSION
       break;
@@ -116,19 +133,30 @@ function php-version {
 
   # try a fuzzy match since we were unable to find a PHP matching given version
   if [[ -z $_PHP_ROOT ]]; then
-    _TARGET_VERSION_FUZZY=$(find $(echo $_PHP_VERSIONS) -maxdepth 1 -mindepth 1 -type d -exec basename {} \; 2>/dev/null | sort -r -t . -k 1,1n -k 2,2n -k 3,3n | grep -E "^$_TARGET_VERSION" 2>/dev/null | tail -1)
+    _TARGET_VERSION_FUZZY=()
 
-    for _PHP_REPOSITORY in $(echo $_PHP_VERSIONS); do
-      if [[ -n "$_TARGET_VERSION_FUZZY" && -d $_PHP_REPOSITORY/$_TARGET_VERSION_FUZZY ]]; then
-        local _PHP_ROOT=$_PHP_REPOSITORY/$_TARGET_VERSION_FUZZY
-        break;
-      fi
+    for _PHP_REPOSITORY in "${_PHP_REPOSITORIES[@]}"; do
+      for _dir in $(find $_PHP_REPOSITORY -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
+        _TARGET_VERSION_FUZZY=("${_TARGET_VERSION_FUZZY[@]}" "$($_dir/bin/php-config --version 2>/dev/null)")
+      done
+    done
+
+    _TARGET_VERSION_FUZZY=$(IFS=$'\n'; echo "${_TARGET_VERSION_FUZZY[*]}" | sort -r -t . -k 1,1n -k 2,2n -k 3,3n | grep -E "^$_TARGET_VERSION" 2>/dev/null | tail -1)
+
+    for _PHP_REPOSITORY in "${_PHP_REPOSITORIES[@]}"; do
+      for _dir in $(find $_PHP_REPOSITORY -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
+        _PHP_VERSION="$($_dir/bin/php-config --version 2>/dev/null)"
+        if [[ -n "$_TARGET_VERSION_FUZZY" && "$_PHP_VERSION" == "$_TARGET_VERSION_FUZZY" ]]; then
+          local _PHP_ROOT=$_dir
+          break;
+        fi
+      done
     done
   fi
 
   # bail-out if we were unable to find a PHP matching given version
   if [[ -z $_PHP_ROOT ]]; then
-    echo "Sorry, but $PROGRAM_APPNAME was unable to find version '$1' under '$_PHP_VERSIONS'." >&2
+    echo "Sorry, but $PROGRAM_APPNAME was unable to find version '$1' under '${_PHP_PATHS[@]}'." >&2
     return 1
   fi
 
