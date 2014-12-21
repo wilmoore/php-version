@@ -160,8 +160,21 @@ function php-version {
     return 1
   fi
 
-  # export current paths
+  # cleanup
   export PHPRC=""
+  local _REPOS=""
+  for _PHP_REPOSITORY in "${_PHP_REPOSITORIES[@]}"; do
+    for _dir in $(find $(echo $_PHP_REPOSITORY) -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
+      # aggregate repository subdirectories and escape dir names http://stackoverflow.com/a/2705678
+      _REPOS="${_REPOS}$(echo "$_dir" | sed -e 's/[]@$*.^|[]/\\&/g')|"
+    done
+  done
+  _REPOS="${_REPOS%?}" # remove the last character ("|")
+  # if you change the delimiter here you have to change @ in the escaping pattern above too
+  [[ -z $_REPOS ]] || export PATH=$(echo "$PATH" | sed -E "s@(${_REPOS})/(bin|sbin):@@g")
+  [[ -z $_REPOS ]] || export MANPATH=$(echo "$MANPATH" | sed -E "s@(${_REPOS})/[^:]+:@@g")
+
+  # export current paths
   [[ -f $_PHP_ROOT/etc/php.ini ]] && export PHPRC=$_PHP_ROOT/etc/php.ini
   [[ -d $_PHP_ROOT/bin  ]]        && export PATH="$_PHP_ROOT/bin:$PATH"
   [[ -d $_PHP_ROOT/sbin ]]        && export PATH="$_PHP_ROOT/sbin:$PATH"
