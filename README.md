@@ -101,7 +101,7 @@ Type `php-version --help` for more configuration options such as how to add extr
 
 > If you have PHP versions in multiple directories, you can list them in the environment variable `PHP_VERSIONS` separated by spaces as depicted below:
 
-    export PHP_VERSIONS="~/local/php ~/php/versions"
+    export PHP_VERSIONS="$HOME/local/php $HOME/php/versions"
 
 **NOTE**: do this before you source `php-version.sh`:
 
