@@ -104,7 +104,7 @@ function php-version {
         done
       done
 
-      _PHP_VERSIONS=$(IFS=$'\n'; echo "${_PHP_VERSIONS[*]}" | sort -r -t . -k 1,1n -k 2,2n -k 3,3n)
+      _PHP_VERSIONS=$(IFS=$'\n'; echo "${_PHP_VERSIONS[*]}" | command sort -r -t . -k 1,1n -k 2,2n -k 3,3n)
 
       for version in $(echo $_PHP_VERSIONS | tr " " "\n"); do
         local selected=" "
@@ -141,7 +141,7 @@ function php-version {
       done
     done
 
-    _TARGET_VERSION_FUZZY=$(IFS=$'\n'; echo "${_TARGET_VERSION_FUZZY[*]}" | sort -r -t . -k 1,1n -k 2,2n -k 3,3n | command grep -E "^$_TARGET_VERSION" 2>/dev/null | tail -1)
+    _TARGET_VERSION_FUZZY=$(IFS=$'\n'; echo "${_TARGET_VERSION_FUZZY[*]}" | command sort -r -t . -k 1,1n -k 2,2n -k 3,3n | command grep -E "^$_TARGET_VERSION" 2>/dev/null | tail -1)
 
     for _PHP_REPOSITORY in "${_PHP_REPOSITORIES[@]}"; do
       for _dir in $(find $_PHP_REPOSITORY -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
