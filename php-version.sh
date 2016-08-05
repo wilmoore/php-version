@@ -24,7 +24,7 @@ function php-version {
 
   # add default Homebrew directories if brew is installed
   if [[ -n $(command -v brew) ]]; then
-    export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type d | grep -E 'php[0-9]*$'))"
+    export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type d | command grep -E 'php[0-9]*$'))"
   fi
 
   # add extra directories if configured
@@ -141,7 +141,7 @@ function php-version {
       done
     done
 
-    _TARGET_VERSION_FUZZY=$(IFS=$'\n'; echo "${_TARGET_VERSION_FUZZY[*]}" | sort -r -t . -k 1,1n -k 2,2n -k 3,3n | grep -E "^$_TARGET_VERSION" 2>/dev/null | tail -1)
+    _TARGET_VERSION_FUZZY=$(IFS=$'\n'; echo "${_TARGET_VERSION_FUZZY[*]}" | sort -r -t . -k 1,1n -k 2,2n -k 3,3n | command grep -E "^$_TARGET_VERSION" 2>/dev/null | tail -1)
 
     for _PHP_REPOSITORY in "${_PHP_REPOSITORIES[@]}"; do
       for _dir in $(find $_PHP_REPOSITORY -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
@@ -173,4 +173,3 @@ function php-version {
 
   hash -r
 }
-
