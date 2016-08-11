@@ -72,10 +72,9 @@
 
 ## Install
 
-**homebrew** (recommended for OSX users)
+**[homebrew](http://brew.sh/)** (recommended for OSX users)
 
-    % brew tap homebrew/dupes
-    % brew tap josegonzalez/homebrew-php
+    % brew tap homebrew/homebrew-php
     % brew install php-version
 
 **cURL** (for non-OSX users or those that prefer not to use `homebrew`):
