@@ -21,7 +21,6 @@ function php-version {
   local grep="command grep -E"
   local sort="command sort -r -t . -k 1,1n -k 2,2n -k 3,3n"
 
-
   # add ~/.phps if it exists (default)
   if [[ -d $HOME/.phps ]]; then
     export _PHP_VERSIONS="$_PHP_VERSIONS $HOME/.phps"
