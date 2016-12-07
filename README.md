@@ -21,6 +21,7 @@
 -   You are provisioning a production server so you only need a single PHP install.
 -   You **NEVER** work on more than one PHP project at a time.
 -   You don't plan on supporting prior work that was done on other PHP versions.
+-   You run fish, or another shell that's not bash-script compliant
 
 
 ## Rationale
