@@ -154,7 +154,6 @@ Type `php-version --help` for more configuration options such as how to add extr
 -   [php_version_solution](https://github.com/convissor/php_version_solution)
 -   [phpfarm](http://sourceforge.net/p/phpfarm/wiki/Home/)
 -   [GNU Stow](http://www.gnu.org/s/stow/)
--   [Encap](http://www.encap.org/)
 -   [phpswitch](https://github.com/jubianchi/phpswitch)
 
 
