@@ -2,7 +2,7 @@
 
 **php-version** exposes a `php-version` command allowing developers to switch between versions of PHP.
 
-![](http://i.cloudup.com/Rl7FXze6ra.png)
+![](https://i.cloudup.com/Rl7FXze6ra.png)
 
 
 ## This _IS_ for you if
@@ -28,8 +28,8 @@
 **php-version** attempts to stick to the classic UNIX notion that tools should do one thing well.
 
 >   While there are [smart](https://github.com/c9s/phpbrew) [alternative](https://github.com/CHH/phpenv)
->   [tools](http://sourceforge.net/p/phpfarm/wiki/Home/) that attempt to [solve](https://github.com/convissor/php_version_solution)
->   this problem, [none](http://www.gnu.org/s/stow/) of the tools I've found were simple enough for me.
+>   [tools](https://sourceforge.net/p/phpfarm/wiki/Home/) that attempt to [solve](https://github.com/convissor/php_version_solution)
+>   this problem, [none](https://www.gnu.org/s/stow/) of the tools I've found were simple enough for me.
 
 
 ## Features
@@ -72,7 +72,7 @@
 
 ## Install
 
-**[homebrew](http://brew.sh/)** (recommended for OSX users)
+**[homebrew](https://brew.sh/)** (recommended for OSX users)
 
     % brew tap homebrew/homebrew-php
     % brew install php-version
@@ -152,8 +152,8 @@ Type `php-version --help` for more configuration options such as how to add extr
 -   [phpenv](https://github.com/CHH/phpenv)
 -   [phpenv](https://github.com/humanshell/phpenv)
 -   [php_version_solution](https://github.com/convissor/php_version_solution)
--   [phpfarm](http://sourceforge.net/p/phpfarm/wiki/Home/)
--   [GNU Stow](http://www.gnu.org/s/stow/)
+-   [phpfarm](https://sourceforge.net/p/phpfarm/wiki/Home/)
+-   [GNU Stow](https://www.gnu.org/s/stow/)
 -   [phpswitch](https://github.com/jubianchi/phpswitch)
 
 
@@ -183,7 +183,7 @@ Type `php-version --help` for more configuration options such as how to add extr
 [opt-install]:      https://github.com/wilmoore/php-version/wiki/Installing
 [exploring]:        https://github.com/wilmoore/php-version/wiki/Exploring-PHP
 [trouble]:          https://github.com/wilmoore/php-version/wiki/Troubleshooting
-[bash]:             http://www.gnu.org/software/bash/
-[zsh]:              http://www.zsh.org/
+[bash]:             https://www.gnu.org/software/bash/
+[zsh]:              https://www.zsh.org/
 
 
