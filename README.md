@@ -9,6 +9,7 @@
 
 -   You are not satisifed with heavy handed *AMP or PPA-based installers.
 -   You [use multiple][homebrew-php] [versions][php-build] of PHP on Linux or Mac.
+-   You use MacPorts with multiple php ports installed, and you don't want to globally select a version with `port select`.
 -   You download [pre-compiled PHP binaries for Windows][windows-bin].
 -   You want to run your automated tests against multiple PHP versions.
 -   You are a developer that works on a variety of PHP projects each requiring different versions of PHP.
@@ -35,6 +36,7 @@
 ## Features
 
 -   [Homebrew installed PHP versions][homebrew-php] are picked up automatically.
+-   MacPorts php ports are picked up if installed.
 -   PHP versions installed [into `~/.phps`][build-php-vers] are picked up automatically.
 -   PHP versions listed in the `$PHP_VERSIONS` shell variable are picked up automatically.
 -   **snap versioning**: Use a partial version number (i.e. `php-version 5`) to automatically use the latest 5.x version.
@@ -96,13 +98,59 @@
     # non-Homebrew
     source $HOME/local/php-version/php-version.sh && php-version 5
 
-Type `php-version --help` for more configuration options such as how to add extra PHP installation paths or `php-config --version` to find out which `php` version is active.
+Type `php-version --help` for more configuration options such as how to add extra PHP installation paths or `php-config` without parameters to find out which `php` version is active.
 
 > If you have PHP versions in multiple directories, you can list them in the environment variable `PHP_VERSIONS` separated by spaces as depicted below:
 
     export PHP_VERSIONS="$HOME/local/php $HOME/php/versions"
 
 **NOTE**: do this before you source `php-version.sh`:
+
+## MacPorts usage
+
+MacPorts support is a bit trickier. The `php-version` command must always be invoked at the root of the project, where it will create a `.php-bin` directory
+containing symlinks to the php port's binaries.
+
+For example, if the `php56` port is installed, the command `php-version 5.6` will create a `.php-bin` directory containing the following symlinks:
+
+    php -> /opt/local/bin/php56
+    php-config -> /opt/local/bin/php-config56
+    phpize -> /opt/local/bin/phpize56
+
+Then it will prepend the full path of the `.php-bin` directory to the `PATH` environment variable.
+
+Remember to add the `.php-bin` directory to your `.gitignore` file.
+
+## Integrate with [direnv](https://github.com/direnv/direnv)
+
+Append the following functions to your `~/.direnvrc` file:
+
+    _php_version_dir() {
+        #***TODO: replace this with the actual dirname of the `php-version.sh` file if not using homebrew
+        $(brew --prefix php-version)
+    }
+
+    # use php [version]
+    use_php() {
+        local ver=$1
+        if [[ -z $ver ]] && [[ -f .php-version ]]; then
+            ver=$(cat .php-version)
+        fi
+        if [[ -z $ver ]]; then
+            echo Unknown php version
+            exit 1
+        fi
+
+        source "$(_php_version_dir)/php-version.sh" && php-version $ver
+    }
+
+Then create an `.envrc` file with the following content in your project root:
+
+    set -e
+    use php <version>
+
+Where `<version>` is the actual php version you want to autoload. Alternatively, you could create a `.php-version` file containing the php version number,
+and omit the `<version>` parameter in the `use php` command.
 
 ## Deactivate / Uninstall
 
