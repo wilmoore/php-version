@@ -113,14 +113,10 @@ function php-version {
     "")
 
       if [ "${#_PORT_VERSIONS[@]}" -gt "0" ]; then
-        # check if PATH contains /php-bin directory
+        _PHP_VERSION=
+        # check if PATH contains /.php-bin directory
         if [[ $PATH =~ "/.php-bin" ]]; then
-          # extract the full path to php-bin dir
-          local _PHP_BIN=$(echo $PATH | $sed "s;(.*/\.php-bin[^:]*).*$;\1;p" | rev | cut -d':' -f 1 | rev)
-          local _PHP_VERSION=$($_PHP_BIN/php-config --version 2>/dev/null)
-          # local _PHP_EXE=$($_PHP_BIN/php-config --php-binary 2>/dev/null)
-          # printf "MacPorts version: ${COLOR_REVERSE}%s${COLOR_NORMAL} -> %s" "$_PHP_VERSION" "$_PHP_EXE"
-          # return 0
+          local _PHP_VERSION=$(php-config --version 2>/dev/null)
         fi
 
         # loop through all macports versions
@@ -142,7 +138,7 @@ function php-version {
         done
         echo ""
         
-        [[ -z $_PHP_BIN ]] || return 0
+        [[ $PATH =~ "/.php-bin" ]] && return 0
       fi
 
       # bail-out if _PHP_REPOSITORIES is an empty array
