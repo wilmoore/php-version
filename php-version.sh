@@ -28,7 +28,7 @@ function php-version {
 
   # add default Homebrew directories if brew is installed
   if [[ -n $(command -v brew) ]]; then
-    export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type d | $grep 'php[0-9]*$'))"
+    export _PHP_VERSIONS="$_PHP_VERSIONS $(echo $(find $(brew --cellar) -maxdepth 1 -type l | $grep 'php[0-9]*$'))"
   fi
 
   # add extra directories if configured
@@ -103,7 +103,7 @@ function php-version {
       # Loop through all repositories and get every single php-version
       _PHP_VERSIONS=()
       for _PHP_REPOSITORY in "${_PHP_REPOSITORIES[@]}"; do
-        for _dir in $(find $(echo $_PHP_REPOSITORY) -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
+        for _dir in $(find -H $(echo $_PHP_REPOSITORY) -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
           _PHP_VERSIONS=("${_PHP_VERSIONS[@]}" "$($_dir/bin/php-config --version 2>/dev/null)")
         done
       done
@@ -140,7 +140,7 @@ function php-version {
     _TARGET_VERSION_FUZZY=()
 
     for _PHP_REPOSITORY in "${_PHP_REPOSITORIES[@]}"; do
-      for _dir in $(find $_PHP_REPOSITORY -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
+      for _dir in $(find -H $_PHP_REPOSITORY -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
         _TARGET_VERSION_FUZZY=("${_TARGET_VERSION_FUZZY[@]}" "$($_dir/bin/php-config --version 2>/dev/null)")
       done
     done
@@ -148,7 +148,7 @@ function php-version {
     _TARGET_VERSION_FUZZY=$(IFS=$'\n'; echo "${_TARGET_VERSION_FUZZY[*]}" | eval $sort | eval "$grep '^$_TARGET_VERSION' 2>/dev/null" | tail -1)
 
     for _PHP_REPOSITORY in "${_PHP_REPOSITORIES[@]}"; do
-      for _dir in $(find $_PHP_REPOSITORY -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
+      for _dir in $(find -H $_PHP_REPOSITORY -maxdepth 1 -mindepth 1 -type d 2>/dev/null); do
         _PHP_VERSION="$($_dir/bin/php-config --version 2>/dev/null)"
         if [[ -n "$_TARGET_VERSION_FUZZY" && "$_PHP_VERSION" == "$_TARGET_VERSION_FUZZY" ]]; then
           local _PHP_ROOT=$_dir
