@@ -9,7 +9,7 @@
 
 -   You are not satisifed with heavy handed *AMP or PPA-based installers.
 -   You [use multiple][homebrew-php] [versions][php-build] of PHP on Linux or Mac.
--   You download [pre-compiled PHP binaries for Windows][windows-bin].
+-   You download [pre-compiled PHP binaries for Windows][windows-bin] (**NOTE**: this is a [bash] script so you'll need [WSL]).
 -   You want to run your automated tests against multiple PHP versions.
 -   You are a developer that works on a variety of PHP projects each requiring different versions of PHP.
 -   You want to work on the latest PHP, but expect to support prior work that was done on older PHP versions.
@@ -40,8 +40,8 @@
 -   **snap versioning**: Use a partial version number (i.e. `php-version 5`) to automatically use the latest 5.x version.
 -   **per version `php.ini`**: we `export PHPRC` if a version-specific `php.ini` exists.
 -   **configurable**: `php-version --help` for details.
--   **bash and zsh** actively supported; though care has been taken such that other shells _may_ work as well (but only [bash] and [zsh] are supported).
--   **tiny**: less than 150 LOC; a single function sourced via your shell's rc file.
+-   **[bash], [zsh], and [fish]** shells actively supported; though care has been taken such that other shells are _likely_ to work as well.
+-   **tiny**: less than 200 LOC; a single function sourced via your shell's initialization file.
 
 
 ## Non-Features
@@ -88,13 +88,15 @@
 
 ## Setup
 
-> Add one of the following to `$HOME/.bashrc`, `$HOME/.zshrc`, or your shell's equivalent configuration file:
+> Add one of the following to your shell's initialization file:
 
     # Homebrew (recommended)
-    source $(brew --prefix php-version)/php-version.sh && php-version 5
+    source $(brew --prefix php-version)/php-version.sh
+    php-version 5
 
     # non-Homebrew
-    source $HOME/local/php-version/php-version.sh && php-version 5
+    source $HOME/local/php-version/php-version.sh # or your place of choice
+    php-version 5
 
 Type `php-version --help` for more configuration options such as how to add extra PHP installation paths or `php-config --version` to find out which `php` version is active.
 
@@ -172,18 +174,18 @@ Type `php-version --help` for more configuration options such as how to add extr
 
 
 
-[php-build]:        https://github.com/CHH/php-build
-[homebrew-php]:     https://github.com/josegonzalez/homebrew-php
+[bash]:             https://www.gnu.org/software/bash/
 [build-php-vers]:   https://github.com/wilmoore/php-version/wiki/Building-PHP-Versions
+[exploring]:        https://github.com/wilmoore/php-version/wiki/Exploring-PHP
+[fish]:             https://fishshell.com/
+[homebrew-php]:     https://github.com/josegonzalez/homebrew-php
+[hooks]:            https://rvm.io/workflow/hooks
+[manual-build]:     https://github.com/wilmoore/php-version#compilation-recommendations
+[opt-install]:      https://github.com/wilmoore/php-version/wiki/Installing
+[php-build]:        https://github.com/CHH/php-build
+[shims]:            https://github.com/sstephenson/rbenv#understanding-shims
+[trouble]:          https://github.com/wilmoore/php-version/wiki/Troubleshooting
 [windows-bin]:      http://windows.php.net/download
 [windows-port]:     https://github.com/wilmoore/php-version/issues/2
-[manual-build]:     https://github.com/wilmoore/php-version#compilation-recommendations
-[shims]:            https://github.com/sstephenson/rbenv#understanding-shims
-[hooks]:            https://rvm.io/workflow/hooks
-[opt-install]:      https://github.com/wilmoore/php-version/wiki/Installing
-[exploring]:        https://github.com/wilmoore/php-version/wiki/Exploring-PHP
-[trouble]:          https://github.com/wilmoore/php-version/wiki/Troubleshooting
-[bash]:             https://www.gnu.org/software/bash/
+[WSL]:              https://docs.microsoft.com/en-us/windows/wsl/install-win10
 [zsh]:              https://www.zsh.org/
-
-
