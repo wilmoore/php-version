@@ -74,7 +74,7 @@
 
 **[homebrew](https://brew.sh/)** (recommended for OSX users)
 
-    % brew tap homebrew/homebrew-php
+    % brew tap wilmoore/formulae
     % brew install php-version
 
 **cURL** (for non-OSX users or those that prefer not to use `homebrew`):
