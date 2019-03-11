@@ -4,7 +4,7 @@
 
 function php-version {
   local PROGRAM_APPNAME='php-version'
-  local PROGRAM_VERSION=0.12.0
+  local PROGRAM_VERSION=0.13.0
   local PROGRAM_DISPLAY_VERSION="$PROGRAM_APPNAME v$PROGRAM_VERSION"
 
   # colors

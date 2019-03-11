@@ -138,18 +138,12 @@ Type `php-version --help` for more configuration options such as how to add extr
 
 
 ## Contributors
-
-```
-99  Wil Moore III
- 3  Jason P. Scharf
- 3  Tugdual Saunier
- 1  Gábor Egyed
- 1  Martin Lundberg
-```
+> https://github.com/wilmoore/php-version/graphs/contributors
 
 
 ## Alternatives
 
+-   [brew-php-switcher](https://github.com/philcook/brew-php-switcher)
 -   [phpbrew](https://github.com/c9s/phpbrew)
 -   [phpenv](https://github.com/CHH/phpenv)
 -   [phpenv](https://github.com/humanshell/phpenv)
