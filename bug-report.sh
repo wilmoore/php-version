@@ -11,7 +11,7 @@ cat <<-EOF
 ## Script
 
   TYPE:    $(command -v php-version 2>/dev/null || echo 'NOT FOUND')
-  VERSION: $(php-version --version  2>/dev/null || echo 'NOT FOUND')
+  VERSION: $(php-version --version 2>/dev/null || echo 'NOT FOUND')
 
 ## Environment
 
@@ -22,7 +22,7 @@ cat <<-EOF
 
 ## Homebrew
 
-  VERSION: $(test -n `command -v brew` && brew --version)
+  VERSION: $(test -n $(command -v brew) && brew --version)
   PATH:    $(command -v brew)
   PHPS:    $(find $(brew --cellar) -maxdepth 1 -type d | grep -E 'php[0-9]+$')
 
@@ -33,5 +33,4 @@ cat <<-EOF
 ## INI
 
 $(php --ini | sed 's/^/  /')
-
 EOF
